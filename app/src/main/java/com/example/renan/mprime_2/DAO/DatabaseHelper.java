@@ -1,0 +1,84 @@
+package com.example.renan.mprime_2.DAO;
+/**
+ * Created by Renan on 21/09/2015.
+ */
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class DatabaseHelper extends SQLiteOpenHelper {
+    private static final String BANCO_DADOS = "Mprime_db";
+    private static final int VERSAO = 1;
+
+    public DatabaseHelper(Context context) {
+        super(context, BANCO_DADOS, null, VERSAO);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+//tabela de users
+        //TREINO
+        db.execSQL("create table treinos" +
+                "(_id integer primary key autoincrement, " +
+                "nm_treino text not null," +
+                " ds_tempo_treino integer)");
+
+        //EXERCICIOS
+        db.execSQL("create table exercicios" +
+                "(_id integer primary key autoincrement," +
+                "ds_series_exercicio integer not null," +
+                "ds_repeticoes_exercicio integer not null," +
+                "ds_carga_exercicio integer not null," +
+                "Treino_ID_treino integer not null, " +
+                "ds_tempo_exercicio integer not null)");
+
+        //LOG_TREINOS
+        db.execSQL("create table log_treinos" +
+                "(_id integer primary key autoincrement, " +
+                "Treino_id_treino integer not null," +
+                "ds_tempo_real_log integer not null," +
+                "dt_treino_log text not null)");
+
+    }
+    //tabela tarefas
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+    public static class Treinos {
+        public static final String TABELA = "treinos";
+        public static final String _ID = "_id";
+        public static final String NM_TREINO = "nm_treino";
+        public static final String DS_TEMPO_TREINO = "ds_tempo_treino";
+
+        public static final String[] COLUNAS = new String[]{
+                _ID, NM_TREINO, DS_TEMPO_TREINO
+        };
+
+    }
+    public static class Exercicios {
+        public static final String TABELA = "exercicios";
+        public static final String _ID = "_id";
+        public static final String NM_EXERCICIO = "nm_exercicio";
+        public static final String DS_SERIES_EXERCICIO = "ds_series_exercicio";
+        public static final String DS_REPETICOES_EXERCICIO = "ds_repeticoes_exercicio";
+        public static final String DS_CARGA_EXERCICIO = "ds_carga_exercicio";
+        public static final String DS_TEMPO_EXERCICIO = "ds_tempo_exercicio";
+        public static final String TREINO_ID_TREINO = "Treino_ID_treino";
+
+        public static final String[] COLUNAS = new String[]{
+                _ID, NM_EXERCICIO, DS_SERIES_EXERCICIO, DS_REPETICOES_EXERCICIO, DS_CARGA_EXERCICIO, DS_TEMPO_EXERCICIO, TREINO_ID_TREINO
+        };
+    }
+    public static class Log_treinos {
+        public static final String TABELA = "log_treinos";
+        public static final String _ID = "_id";
+        public static final String DS_TEMPO_REAL_LOG = "tarefa";
+        public static final String DT_TEMPO_TREINO = "dt_criacao";
+        public static final String TREINO_ID_TREINO = "Treino_ID_treino";
+
+        public static final String[] COLUNAS = new String[]{
+                _ID, TREINO_ID_TREINO, DS_TEMPO_REAL_LOG, DT_TEMPO_TREINO
+        };
+    }
+}
