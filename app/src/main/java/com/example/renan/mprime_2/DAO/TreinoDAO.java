@@ -37,7 +37,7 @@ public class TreinoDAO {
         Treino model = new Treino(
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Treinos._ID)),
                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.Treinos.NM_TREINO)),
-                cursor.getString(cursor.getColumnIndex(DatabaseHelper.Treinos.DS_TEMPO_TREINO)));
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Treinos.DS_TEMPO_TREINO)));
         return model;
     }
 

@@ -13,11 +13,11 @@ public class LogTreino {
     public LogTreino() {
     }
 
-    public LogTreino(Integer _id, String data_log, String tempo_real, String treino_ID_treino) {
+    public LogTreino(Integer _id, String data_log, int tempo_real, Integer treino_ID_treino) {
         this._id = _id;
         this.data_log = data_log;
         this.tempo_real = tempo_real;
-        Treino_ID_treino = treino_ID_treino;
+        this.Treino_ID_treino = treino_ID_treino;
     }
 
     public Integer get_id() {

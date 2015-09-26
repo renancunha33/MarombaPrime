@@ -11,7 +11,7 @@ public class Treino {
     public Treino() {
     }
 
-    public Treino(Integer _id, String nome_treino, String tempo_treino) {
+    public Treino(Integer _id, String nome_treino, int tempo_treino) {
         this._id = _id;
         this.nome_treino = nome_treino;
         this.tempo_treino = tempo_treino;

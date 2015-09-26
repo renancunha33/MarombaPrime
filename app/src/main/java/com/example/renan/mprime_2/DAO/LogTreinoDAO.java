@@ -34,8 +34,8 @@ public class LogTreinoDAO {
         LogTreino model = new LogTreino(
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Log_treinos._ID)),
                 cursor.getString(cursor.getColumnIndex(DatabaseHelper.Log_treinos.DS_TEMPO_REAL_LOG)),
-                cursor.getString(cursor.getColumnIndex(DatabaseHelper.Log_treinos.DT_TEMPO_TREINO)),
-                cursor.getString(cursor.getColumnIndex(DatabaseHelper.Log_treinos.TREINO_ID_TREINO))
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Log_treinos.DT_TEMPO_TREINO)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Log_treinos.TREINO_ID_TREINO))
         );
         return model;
     }
