@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">MPrime_2</string>
+    <string name="app_name">Muscle Prime</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_section4">Section 4</string>
-    <string name="title_section5">Section 5</string>
-    <string name="title_section6">Section 6</string>
+    <string name="title_Treinos">Treinos</string>
+    <string name="title_NovoTreino">Novo Treino</string>
+    <string name="title_AdicionaExercicios">Adicionar Exercício</string>
+    <string name="title_Treinar">Iniciar atividade</string>
+    <string name="title_LogTreinos">Log de treinos</string>
+    <string name="title_Sobre">Sobre</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_example">Example action</string>
+    <string name="action_example">NOVO</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configurações</string>
 </resources>
