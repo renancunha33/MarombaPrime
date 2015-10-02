@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.renan.mprime_2.Model.LogTreino;
 import com.example.renan.mprime_2.Model.Treino;
 import com.example.renan.mprime_2.R;
 
@@ -16,14 +17,14 @@ import java.util.List;
 /**
  * Created by Renan on 22/09/2015.
  */
-public class TreinoAdapter extends BaseAdapter {
+public class LogTreinoAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Treino> lista;
+    private List<LogTreino> lista;
 
-    public TreinoAdapter(Context ctx, List<Treino> treinos) {
+    public LogTreinoAdapter(Context ctx, List<LogTreino> logTreinos) {
         this.context = ctx;
-        this.lista = treinos;
+        this.lista = logTreinos;
     }
 
     @Override
@@ -43,17 +44,19 @@ public class TreinoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        Treino treino = lista.get(position);
+        LogTreino logTreino = lista.get(position);
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.fragment_treinos, null);
+            view = inflater.inflate(R.layout.fragment_log, null);
         }
-        TextView txtNomeTreino = (TextView) view.findViewById(R.id.txt_nome_treino);
-        TextView txtTempoTreino = (TextView) view.findViewById(R.id.txt_tempo_treino);
-        txtNomeTreino.setText(treino.getNome_treino());
-        txtTempoTreino.setText(treino.getTempo_treino());
+        TextView txtDataLog = (TextView) view.findViewById(R.id.txt_data_log);
+        TextView txtNomeTreinoLog = (TextView) view.findViewById(R.id.txt_nm_treino_log);
+        TextView txtTempoTreinoLog = (TextView) view.findViewById(R.id.txt_tempo_treino_log);
+        TextView txtTempoLog = (TextView) view.findViewById(R.id.txt_tempo_log);
 
+        txtDataLog.setText(logTreino.getData_log());
+        //ver como pegar os valores pelo ID do treino
+        txtTempoLog.setText(logTreino.getTempo_real());
         return view;
     }
 }
-
