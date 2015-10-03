@@ -57,7 +57,6 @@ public class TreinoDAO {
         ContentValues valores = new ContentValues();
         valores.put(DatabaseHelper.Treinos.NM_TREINO, treino.getNome_treino());
         valores.put(DatabaseHelper.Treinos.DS_TEMPO_TREINO, treino.getTempo_treino());
-
         if ((treino.get_id() != null)) {
             return database.update(DatabaseHelper.Treinos.TABELA, valores, "_id = ?", new String[]{treino.get_id().toString()});
         } else {

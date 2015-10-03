@@ -8,7 +8,7 @@ public class Treino {
     private String nome_treino;
     private int tempo_treino;
 
-    public Treino() {
+   public Treino() {
     }
 
     public Treino(Integer _id, String nome_treino, int tempo_treino) {

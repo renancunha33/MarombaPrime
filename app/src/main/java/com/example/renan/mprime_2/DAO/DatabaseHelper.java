@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String BANCO_DADOS = "Mprime_db";
-    private static final int VERSAO = 1;
+    private static final int VERSAO = 2;
 
     public DatabaseHelper(Context context) {
         super(context, BANCO_DADOS, null, VERSAO);
