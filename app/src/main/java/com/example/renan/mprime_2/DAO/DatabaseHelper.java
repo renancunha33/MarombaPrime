@@ -3,12 +3,16 @@ package com.example.renan.mprime_2.DAO;
  * Created by Renan on 21/09/2015.
  */
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String BANCO_DADOS = "Mprime_db";
-    private static final int VERSAO = 2;
+    private static final int VERSAO = 10;
 
     public DatabaseHelper(Context context) {
         super(context, BANCO_DADOS, null, VERSAO);
@@ -26,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //EXERCICIOS
         db.execSQL("create table exercicios" +
                 "(_id integer primary key autoincrement," +
+                "nm_exercicio text not null,"+
                 "ds_series_exercicio integer not null," +
                 "ds_repeticoes_exercicio integer not null," +
                 "ds_carga_exercicio integer not null," +
@@ -80,5 +85,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public static final String[] COLUNAS = new String[]{
                 _ID, TREINO_ID_TREINO, DS_TEMPO_REAL_LOG, DT_TEMPO_TREINO
         };
+    }
+
+    public List<String> getAllLabels(){
+        List<String> labels = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT nm_treino FROM  treinos";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        db.close();
+
+        // returning lables
+        return labels;
     }
 }

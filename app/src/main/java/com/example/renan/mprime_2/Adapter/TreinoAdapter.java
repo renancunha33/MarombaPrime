@@ -48,9 +48,11 @@ public class TreinoAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.lista_treinos, null);
         }
+        TextView txtIDtreino = (TextView) view.findViewById(R.id.txt_id_treino);
         TextView txtNomeTreino = (TextView) view.findViewById(R.id.txt_nome_treino);
         TextView txtTempoTreino = (TextView) view.findViewById(R.id.txt_tempo_treino);
 
+        txtIDtreino.setText(treino.get_id()+" - ");
         txtNomeTreino.setText(treino.getNome_treino()+ " - ");
         txtTempoTreino.setText(String.valueOf(treino.getTempo_treino()) + " minutos");
 

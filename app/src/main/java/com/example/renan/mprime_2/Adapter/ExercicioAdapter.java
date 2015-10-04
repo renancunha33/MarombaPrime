@@ -47,17 +47,21 @@ public class ExercicioAdapter extends BaseAdapter {
         Exercicio exercicio = lista.get(position);
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.fragment_exercicio, null);
+            view = inflater.inflate(R.layout.lista_exercicios, null);
         }
         TextView txtNomeExec = (TextView) view.findViewById(R.id.txt_nome_exec);
         TextView txtRepetExec = (TextView) view.findViewById(R.id.txt_repet_exec);
         TextView txtSerieExec = (TextView) view.findViewById(R.id.txt_serie_exec);
         TextView txtCargaExec = (TextView) view.findViewById(R.id.txt_carga_exec);
+        TextView txtTempoExec = (TextView) view.findViewById(R.id.txt_tempo_exec);
+        TextView txtIDExec = (TextView) view.findViewById(R.id.txt_idtreino_exec);
 
         txtNomeExec.setText(exercicio.getNome_exercicio());
-        txtRepetExec.setText(exercicio.getRepeticoes_exercicio());
-        txtSerieExec.setText(exercicio.getSerie_exercicio());
-        txtCargaExec.setText(exercicio.getCarga_exercicio());
+        txtRepetExec.setText(String.valueOf(exercicio.getRepeticoes_exercicio()));
+        txtSerieExec.setText(String.valueOf(exercicio.getSerie_exercicio()));
+        txtCargaExec.setText(String.valueOf(exercicio.getCarga_exercicio())+" Kg ");
+        txtTempoExec.setText(String.valueOf(exercicio.getTempo_exercicio())+" mins ");
+        txtIDExec.setText("id/treino: "+String.valueOf(exercicio.getTreino_ID_treino()));
         return view;
     }
 }

@@ -48,5 +48,21 @@
         android:layout_marginTop="15dp"
         android:text="000"
         android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/txt_tempo_exec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="000"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/txt_idtreino_exec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="000"
+        android:textStyle="bold"/>
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.renan.mprime_2.DAO;
 /**
  * Created by Renan on 21/09/2015.
  */
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -32,7 +33,8 @@ public class TreinoDAO {
         }
         return database;
     }
-//  _ID, NM_TREINO, DS_TEMPO_TREINO
+
+    //  _ID, NM_TREINO, DS_TEMPO_TREINO
     private Treino CriarTreino(Cursor cursor) {
         Treino model = new Treino(
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Treinos._ID)),
@@ -42,12 +44,11 @@ public class TreinoDAO {
     }
 
     public List<Treino> listarTreinos() {
-        Cursor cursor = getDatabase().query(DatabaseHelper.Treinos.TABELA,
-                DatabaseHelper.Treinos.COLUNAS, null, null, null, null, null);
+        Cursor cursor = getDatabase().query(DatabaseHelper.Treinos.TABELA, DatabaseHelper.Treinos.COLUNAS, null, null, null, null, null);
         List<Treino> treinos = new ArrayList<Treino>();
         while (cursor.moveToNext()) {
             Treino model = CriarTreino(cursor);
-           treinos.add(model);
+            treinos.add(model);
         }
         cursor.close();
         return treinos;
@@ -76,6 +77,18 @@ public class TreinoDAO {
             Treino model = CriarTreino(cursor);
             cursor.close();
             return model;
+        }
+        return null;
+    }
+
+    public String buscarTreinoPorNome(String nome) {
+        Cursor mCursor = getDatabase().rawQuery("SELECT _id  FROM treinos WHERE nm_treino = '" + nome + "'", null);
+        if (mCursor != null)
+        {
+            mCursor.moveToFirst();
+            int projectId = mCursor.getInt(0);
+            String strProjectId = String.valueOf(projectId);
+           return strProjectId;
         }
         return null;
     }

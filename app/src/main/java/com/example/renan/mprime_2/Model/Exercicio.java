@@ -2,7 +2,7 @@ package com.example.renan.mprime_2.Model;
 
 /**
  * Created by Renan on 21/09/2015.
- *
+ * <p/>
  * create table EXERCICIO (_id, nm_exercicio, ds_series_exercicio,
  * ds_repeticoes_exercicio, ds_carga_exercicio, Treino_ID_treino, ds_tempo_exercicio)
  */
@@ -15,10 +15,14 @@ public class Exercicio {
     private int tempo_exercicio;
     private Integer Treino_ID_treino;
 
+    public Exercicio() {
+
+    }
+
     public Exercicio(int anInt, String string, String cursorString, String s, String string1, String cursorString1) {
     }
 
-    public Exercicio(Integer _id, String nome_exercicio, int serie_exercicio, int repeticoes_exercicio, int carga_exercicio, int tempo_exercicio, Integer treino_ID_treino) {
+    public Exercicio(Integer _id, String nome_exercicio, int serie_exercicio, int repeticoes_exercicio, int carga_exercicio, int tempo_exercicio, int treino_ID_treino) {
         this._id = _id;
         this.nome_exercicio = nome_exercicio;
         this.serie_exercicio = serie_exercicio;

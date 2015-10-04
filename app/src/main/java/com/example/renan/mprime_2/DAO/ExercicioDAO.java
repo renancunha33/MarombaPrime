@@ -8,6 +8,8 @@ import com.example.renan.mprime_2.Model.Exercicio;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.renan.mprime_2.DAO.DatabaseHelper.Exercicios.TABELA;
+
 /**
  * Created by Renan on 21/09/2015.
  */
@@ -31,28 +33,29 @@ public class ExercicioDAO {
     private Exercicio CriarExercicio(Cursor cursor) {
         Exercicio model = new Exercicio(
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Exercicios._ID)),
-                cursor.getString(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_SERIES_EXERCICIO)),
-                cursor.getString(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_REPETICOES_EXERCICIO)),
-                cursor.getString(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_CARGA_EXERCICIO)),
-                cursor.getString(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_TEMPO_EXERCICIO)),
-                cursor.getString(cursor.getColumnIndex(DatabaseHelper.Exercicios.TREINO_ID_TREINO)));
+                cursor.getString(cursor.getColumnIndex(DatabaseHelper.Exercicios.NM_EXERCICIO)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_SERIES_EXERCICIO)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_REPETICOES_EXERCICIO)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_CARGA_EXERCICIO)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_TEMPO_EXERCICIO)),
+                cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Exercicios.TREINO_ID_TREINO)));
         return model;
     }
 
     public List<Exercicio> listarExercicios() {
-        Cursor cursor = getDatabase().query(DatabaseHelper.Exercicios.TABELA,
-                DatabaseHelper.Exercicios.COLUNAS, null, null, null, null, null);
-        List<Exercicio> Exercicios = new ArrayList<Exercicio>();
+        Cursor cursor = getDatabase().query(TABELA, DatabaseHelper.Exercicios.COLUNAS, null, null, null, null, null);
+        List<Exercicio> exercicios = new ArrayList<Exercicio>();
         while (cursor.moveToNext()) {
             Exercicio model = CriarExercicio(cursor);
-            Exercicios.add(model);
+            exercicios.add(model);
         }
         cursor.close();
-        return Exercicios;
+        return exercicios;
     }
 
     public long SalvarExercicio(Exercicio exercicio) {
         ContentValues valores = new ContentValues();
+        valores.put(DatabaseHelper.Exercicios.NM_EXERCICIO, exercicio.getNome_exercicio());
         valores.put(DatabaseHelper.Exercicios.DS_SERIES_EXERCICIO, exercicio.getSerie_exercicio());
         valores.put(DatabaseHelper.Exercicios.DS_REPETICOES_EXERCICIO, exercicio.getRepeticoes_exercicio());
         valores.put(DatabaseHelper.Exercicios.DS_CARGA_EXERCICIO, exercicio.getCarga_exercicio());
@@ -60,19 +63,19 @@ public class ExercicioDAO {
         valores.put(DatabaseHelper.Exercicios.TREINO_ID_TREINO, exercicio.getTreino_ID_treino());
 
         if ((exercicio.get_id() != null)) {
-            return database.update(DatabaseHelper.Exercicios.TABELA, valores, "_id = ?", new String[]{exercicio.get_id().toString()});
+            return database.update(TABELA, valores, "_id = ?", new String[]{exercicio.get_id().toString()});
         } else {
-            return getDatabase().insert(DatabaseHelper.Exercicios.TABELA, null, valores);
+            return getDatabase().insert(TABELA, null, valores);
         }
     }
 
     public boolean removerExercicios(int id) {
-        return getDatabase().delete(DatabaseHelper.Exercicios.TABELA, "_id = ?", new String[]{Integer.toString(id)}) > 0;
+        return getDatabase().delete(TABELA, "_id = ?", new String[]{Integer.toString(id)}) > 0;
 
     }
 
     public Exercicio buscarExercicioPorID(int id) {
-        Cursor cursor = getDatabase().query(DatabaseHelper.Exercicios.TABELA,
+        Cursor cursor = getDatabase().query(TABELA,
                 DatabaseHelper.Exercicios.COLUNAS, "_id = ?", new String[]{Integer.toString(id)}, null, null, null);
         if (cursor.moveToNext()) {
             Exercicio model = CriarExercicio(cursor);
