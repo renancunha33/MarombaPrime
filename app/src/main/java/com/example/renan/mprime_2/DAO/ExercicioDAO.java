@@ -77,7 +77,7 @@ public class ExercicioDAO {
     }
 
     public Exercicio buscarExercicioPorID(int id) {
-        Cursor cursor = getDatabase().query(TABELA,
+        Cursor cursor = getDatabase().query(DatabaseHelper.Exercicios.TABELA,
                 DatabaseHelper.Exercicios.COLUNAS, "_id = ?", new String[]{Integer.toString(id)}, null, null, null);
         if (cursor.moveToNext()) {
             Exercicio model = CriarExercicio(cursor);
