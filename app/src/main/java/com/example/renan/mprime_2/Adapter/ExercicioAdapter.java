@@ -49,13 +49,14 @@ public class ExercicioAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.lista_exercicios, null);
         }
+        TextView txtidExec = (TextView) view.findViewById(R.id.txt_id_exec);
         TextView txtNomeExec = (TextView) view.findViewById(R.id.txt_nome_exec);
         TextView txtRepetExec = (TextView) view.findViewById(R.id.txt_repet_exec);
         TextView txtSerieExec = (TextView) view.findViewById(R.id.txt_serie_exec);
         TextView txtCargaExec = (TextView) view.findViewById(R.id.txt_carga_exec);
         TextView txtTempoExec = (TextView) view.findViewById(R.id.txt_tempo_exec);
 
-
+        txtidExec.setText(String.valueOf(exercicio.get_id()));
         txtNomeExec.setText(exercicio.getNome_exercicio());
         txtRepetExec.setText(String.valueOf(exercicio.getRepeticoes_exercicio()));
         txtSerieExec.setText(String.valueOf(exercicio.getSerie_exercicio()));
