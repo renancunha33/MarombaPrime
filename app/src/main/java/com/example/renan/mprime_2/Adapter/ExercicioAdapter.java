@@ -54,14 +54,14 @@ public class ExercicioAdapter extends BaseAdapter {
         TextView txtSerieExec = (TextView) view.findViewById(R.id.txt_serie_exec);
         TextView txtCargaExec = (TextView) view.findViewById(R.id.txt_carga_exec);
         TextView txtTempoExec = (TextView) view.findViewById(R.id.txt_tempo_exec);
-        TextView txtIDExec = (TextView) view.findViewById(R.id.txt_idtreino_exec);
+
 
         txtNomeExec.setText(exercicio.getNome_exercicio());
         txtRepetExec.setText(String.valueOf(exercicio.getRepeticoes_exercicio()));
         txtSerieExec.setText(String.valueOf(exercicio.getSerie_exercicio()));
         txtCargaExec.setText(String.valueOf(exercicio.getCarga_exercicio())+" Kg ");
         txtTempoExec.setText(String.valueOf(exercicio.getTempo_exercicio())+" mins ");
-        txtIDExec.setText("id/treino: "+String.valueOf(exercicio.getTreino_ID_treino()));
+
         return view;
     }
 }

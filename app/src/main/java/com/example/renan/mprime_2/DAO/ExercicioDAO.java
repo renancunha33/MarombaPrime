@@ -4,7 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
 import com.example.renan.mprime_2.Model.Exercicio;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,5 +90,17 @@ public class ExercicioDAO {
     public void fechar() {
         databaseHelper.close();
         database = null;
+    }
+
+    public List<Exercicio> SelectExerciciosPorID(int id) {
+        List<Exercicio> exercicios = new ArrayList<Exercicio>();
+        Cursor cursor = getDatabase().rawQuery("SELECT * FROM exercicios WHERE Treino_ID_treino = '" + String.valueOf(id) + "'", null);
+        // looping through all rows and adding to list
+        while (cursor.moveToNext()) {
+            Exercicio model = CriarExercicio(cursor);
+            exercicios.add(model);
+        }
+        cursor.close();
+        return exercicios;
     }
 }
