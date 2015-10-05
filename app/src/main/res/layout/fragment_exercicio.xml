@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exercicios"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Spinner
+        android:id="@+id/Spinner01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#169cff" />
+
+    <EditText
+        android:id="@+id/edtExercicio"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome do Exercício"
+        android:text=""/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtSeries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Series"
+            android:inputType="number"
+            android:text=""/>
+        <!-- Series -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X" />
+
+        <EditText
+            android:id="@+id/edtRepeticoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Repetições"
+            android:inputType="number"
+            android:text=""/>
+
+        <EditText
+            android:id="@+id/edtTreinoRep"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:hint="ID"
+            android:text="ID"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/edtCarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Carga(kg)"
+            android:inputType="number" />
+
+        <!-- TEMPO -->
+        <EditText
+            android:id="@+id/edtTempo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tempo (minutos c/tempo de descanso)"
+            android:inputType="number"
+            android:text=""/>
+
+        <Button
+            android:id="@+id/btSalvarExercicio"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Salvar Exercicio" />
+
+        <ListView
+            android:id="@+id/lvExec"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+        </ListView>
+
+    </LinearLayout>
+</LinearLayout>
