@@ -83,12 +83,21 @@ public class TreinoDAO {
 
     public String buscarTreinoPorNome(String nome) {
         Cursor mCursor = getDatabase().rawQuery("SELECT _id  FROM treinos WHERE nm_treino = '" + nome + "'", null);
-        if (mCursor != null)
-        {
+        if (mCursor != null) {
             mCursor.moveToFirst();
             int projectId = mCursor.getInt(0);
             String strProjectId = String.valueOf(projectId);
-           return strProjectId;
+            return strProjectId;
+        }
+        return null;
+    }
+
+    public Treino buscarTreinoPorNome_e(String nome) {
+        Cursor mCursor = getDatabase().rawQuery("SELECT *  FROM treinos WHERE nm_treino = '" + nome + "'", null);
+        if (mCursor.moveToNext()) {
+            Treino model = CriarTreino(mCursor);
+            mCursor.close();
+            return model;
         }
         return null;
     }

@@ -56,7 +56,7 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
         lista = (ListView) MyView.findViewById(R.id.lvExec);
         spinner = (Spinner) MyView.findViewById(R.id.Spinner01);
         spinner.setOnItemSelectedListener(this);
-        edtID = (EditText) MyView.findViewById(R.id.edtTreinoRep);
+        //edtID = (EditText) MyView.findViewById(R.id.edtTreinoRep);
         Button btSalvar = (Button) MyView.findViewById(R.id.btSalvarExercicio);
         loadSpinnerData();
 
