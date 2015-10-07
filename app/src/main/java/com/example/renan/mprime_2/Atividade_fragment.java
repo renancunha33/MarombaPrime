@@ -42,13 +42,16 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_atividade, container, (false));
-        Button btDescartar = (Button) MyView.findViewById(R.id.btDescartarAtividade);
+        final Button btDescartar = (Button) MyView.findViewById(R.id.btDescartarAtividade);
+        final Button btSalvar = (Button) MyView.findViewById(R.id.btSalvarAtividade);
         spinner = (Spinner) MyView.findViewById(R.id.Spinner02);
         txtNome = (TextView) MyView.findViewById(R.id.txt_nm_treino_);
         txtTempo = (TextView) MyView.findViewById(R.id.txt_tempo_treino_);
         txtReal = (TextView) MyView.findViewById(R.id.txt_tempoReal_treino_);
         txtData = (TextView) MyView.findViewById(R.id.txt_data_treino_);
         spinner.setOnItemSelectedListener(this);
+        btDescartar.setEnabled(false);
+        btSalvar.setEnabled(false);
         loadSpinnerData();
         final Calendar c = Calendar.getInstance();
         final Chronometer ch = (Chronometer) MyView.findViewById(R.id.chronometer);
@@ -62,6 +65,8 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                 button.setSelected(!button.isSelected());
 
                 if (button.isSelected()) {
+                    btDescartar.setEnabled(false);
+                    btSalvar.setEnabled(false);
                     spinner.setEnabled(false);
                     imgButton.setBackgroundResource(R.drawable.stop);
                     ch.setBase(SystemClock.elapsedRealtime());
@@ -83,7 +88,8 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                     });
                 } else {
 
-
+                    btDescartar.setEnabled(true);
+                    btSalvar.setEnabled(true);
                     imgButton.setBackgroundResource(R.drawable.start);
                     ch.stop();
                     txtReal.setText(ch.getText());
@@ -94,7 +100,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                     int year = c.get(Calendar.YEAR);
                     txtData.setText(day + "/" + (month + 1) + "/" + year);
                     imgButton.setEnabled(false);
-                    Toast.makeText(getContext(), "Salve ou descarte a Atividade para treinar novamente! ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Salve ou descarte a Atividade para treinar novamente! ", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -111,6 +117,22 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                 txtReal.setText("--------------");
                 txtData.setText("--------------");
                 spinner.setEnabled(true);
+                btDescartar.setEnabled(false);
+                btSalvar.setEnabled(false);
+            }
+        });
+        btSalvar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Em fase de implementação", Toast.LENGTH_SHORT).show();
+                imgButton.setEnabled(true);
+                ch.setText("00:00");
+                txtReal.setText("--------------");
+                txtData.setText("--------------");
+                spinner.setEnabled(true);
+                btDescartar.setEnabled(false);
+                btSalvar.setEnabled(false);
             }
         });
         return MyView;
