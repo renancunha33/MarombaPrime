@@ -1,6 +1,9 @@
 package com.example.renan.mprime_2;
 
 import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,23 +15,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.renan.mprime_2.Adapter.ExercicioAdapter;
 import com.example.renan.mprime_2.DAO.DatabaseHelper;
-import com.example.renan.mprime_2.DAO.ExercicioDAO;
 import com.example.renan.mprime_2.DAO.TreinoDAO;
 import com.example.renan.mprime_2.Model.Treino;
 
 import java.util.Calendar;
 import java.util.List;
-
-import static com.example.renan.mprime_2.R.raw.johncena;
 
 /**
  * Created by Renan on 30/09/2015.
@@ -38,34 +35,30 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
     View MyView;
     TextView txtNome, txtTempo, txtReal, txtData;
     int teste;
+    MediaPlayer som;
     //  MediaPlayer som, som2;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_atividade, container, (false));
+        Button btDescartar = (Button) MyView.findViewById(R.id.btDescartarAtividade);
         spinner = (Spinner) MyView.findViewById(R.id.Spinner02);
         txtNome = (TextView) MyView.findViewById(R.id.txt_nm_treino_);
         txtTempo = (TextView) MyView.findViewById(R.id.txt_tempo_treino_);
         txtReal = (TextView) MyView.findViewById(R.id.txt_tempoReal_treino_);
         txtData = (TextView) MyView.findViewById(R.id.txt_data_treino_);
         spinner.setOnItemSelectedListener(this);
-        spinner.setOnItemSelectedListener(this);
         loadSpinnerData();
+        final Calendar c = Calendar.getInstance();
+        final Chronometer ch = (Chronometer) MyView.findViewById(R.id.chronometer);
         final ImageButton imgButton = (ImageButton) MyView.findViewById(R.id.imageButton);
-
-
         imgButton.setOnClickListener(new View.OnClickListener() {
-            final Calendar c = Calendar.getInstance();
-            final Chronometer ch = (Chronometer) MyView.findViewById(R.id.chronometer);
-            final MediaPlayer som = MediaPlayer.create(Atividade_fragment.super.getContext(), R.raw.pim);
-            //===================================RESOLVER MAIS TARDE
-            final MediaPlayer som2 = MediaPlayer.create(Atividade_fragment.super.getContext(), R.raw.johncena);
-            //===================================RESOLVER MAIS TARDE
 
             public void onClick(View button) {
-                //Set the button's appearance
-                //  som.start(); ===================================RESOLVER MAIS TARDE
+                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                final Ringtone r = RingtoneManager.getRingtone(getContext(), notification);
+                r.play();
                 button.setSelected(!button.isSelected());
 
                 if (button.isSelected()) {
@@ -80,6 +73,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                             if (ch.getBase() % 1 == 0) {
                                 teste++;
                                 if (teste == 900) {
+                                    r.play();
                                     //   som2.start();  som.start(); ===================================RESOLVER MAIS TARDE
                                     teste = 0;
                                 }
@@ -89,7 +83,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                     });
                 } else {
 
-                    spinner.setEnabled(true);
+
                     imgButton.setBackgroundResource(R.drawable.start);
                     ch.stop();
                     txtReal.setText(ch.getText());
@@ -99,8 +93,8 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                     int month = c.get(Calendar.MONTH);
                     int year = c.get(Calendar.YEAR);
                     txtData.setText(day + "/" + (month + 1) + "/" + year);
-
-
+                    imgButton.setEnabled(false);
+                    Toast.makeText(getContext(), "Salve ou descarte a Atividade para treinar novamente! ", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -108,7 +102,17 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
 
         });
 
+        btDescartar.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                imgButton.setEnabled(true);
+                ch.setText("00:00");
+                txtReal.setText("--------------");
+                txtData.setText("--------------");
+                spinner.setEnabled(true);
+            }
+        });
         return MyView;
     }
 

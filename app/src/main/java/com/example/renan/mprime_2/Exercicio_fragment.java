@@ -84,7 +84,7 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
                                     if (String.valueOf(edtID.getText()).equals("ID")) {
                                         Toast.makeText(getContext(), "CRIE UM TREINO!", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(getContext(), txtidExec.getText(), Toast.LENGTH_SHORT).show();
+                                        // Toast.makeText(getContext(), txtidExec.getText(), Toast.LENGTH_SHORT).show();
                                         idposicao = position;
                                         model = exercicioDAO.buscarExercicioPorID(Integer.valueOf((String) txtidExec.getText()));
                                         menos = model.getTempo_exercicio();
@@ -308,7 +308,7 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
         resultado = treinoDAO.SalvarTreino(treino);
 
         if (resultado != -1 && resultado > 0) {
-            Toast.makeText(this.getContext(), "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(this.getContext(), "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this.getContext(), "ERRO ao Atualizar treino!", Toast.LENGTH_SHORT).show();
         }

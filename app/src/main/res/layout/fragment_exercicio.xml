@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#dcf8c6">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Exercicios"
+
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Spinner
@@ -17,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#169cff" />
+        android:background="#009688"
+        android:textColor="#ffffff"/>
 
     <EditText
         android:id="@+id/edtExercicio"
@@ -90,9 +93,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Salvar Exercicio" />
+            android:text="Salvar Exercicio"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="#009688"
+            android:textColor="#ffffff"/>
 
         <ListView
+            android:layout_marginTop="10dp"
             android:id="@+id/lvExec"
             android:layout_width="match_parent"
             android:layout_height="fill_parent">
