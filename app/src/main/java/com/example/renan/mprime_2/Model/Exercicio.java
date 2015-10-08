@@ -19,9 +19,6 @@ public class Exercicio {
 
     }
 
-    public Exercicio(int anInt, String string, String cursorString, String s, String string1, String cursorString1) {
-    }
-
     public Exercicio(Integer _id, String nome_exercicio, int serie_exercicio, int repeticoes_exercicio, int carga_exercicio, int tempo_exercicio, int treino_ID_treino) {
         this._id = _id;
         this.nome_exercicio = nome_exercicio;

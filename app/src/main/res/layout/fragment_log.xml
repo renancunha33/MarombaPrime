@@ -9,4 +9,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="log"
         android:id="@+id/textView" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lvLog">
+
+    </ListView>
 </LinearLayout>

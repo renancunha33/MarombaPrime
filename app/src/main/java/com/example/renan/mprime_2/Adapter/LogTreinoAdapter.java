@@ -53,13 +53,14 @@ public class LogTreinoAdapter extends BaseAdapter {
         LogTreino logTreino = lista.get(position);
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.fragment_log, null);
+            view = inflater.inflate(R.layout.lista_log, null);
         }
 
 
         TextView txtDataLog = (TextView) view.findViewById(R.id.txt_data_log);
         TextView txtNomeTreinoLog = (TextView) view.findViewById(R.id.txt_nm_treino_log); //valor vem da tabela TREINO
         TextView txtTempoTreinoLog = (TextView) view.findViewById(R.id.txt_tempo_treino_log); //valor vem da tabela TREINO
+        TextView txtID = (TextView) view.findViewById(R.id.txt_id_log);
         TextView txtTempoLog = (TextView) view.findViewById(R.id.txt_tempo_log);
 
         //treinoDAO = new TreinoDAO(this.context);
@@ -69,7 +70,8 @@ public class LogTreinoAdapter extends BaseAdapter {
         //txtTempoTreinoLog.setText(model.getTempo_treino());
 
         txtDataLog.setText(logTreino.getData_log());
-        txtTempoLog.setText(logTreino.getTempo_real());
+        txtTempoLog.setText(logTreino.getTempo_real()+"mins ");
+        txtID.setText("treino: "+logTreino.getTreino_ID_treino());
 
         return view;
     }

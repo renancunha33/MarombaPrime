@@ -17,7 +17,7 @@ public class LogTreino {
         this._id = _id;
         this.data_log = data_log;
         this.tempo_real = tempo_real;
-        this.Treino_ID_treino = treino_ID_treino;
+        Treino_ID_treino = treino_ID_treino;
     }
 
     public Integer get_id() {
