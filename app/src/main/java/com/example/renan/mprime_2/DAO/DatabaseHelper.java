@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//tabela de users
+
         //TREINO
         db.execSQL("create table treinos" +
                 "(_id integer primary key autoincrement, " +
