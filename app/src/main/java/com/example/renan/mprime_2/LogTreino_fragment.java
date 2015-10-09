@@ -40,7 +40,7 @@ public class LogTreino_fragment extends Fragment implements AdapterView.OnItemCl
         final AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
         lista = (ListView) MyView.findViewById(R.id.lvLog);
         logTreinoDAO = new LogTreinoDAO(getContext());
-        logtreinoList = logTreinoDAO.SelectLogPorID();
+        logtreinoList = logTreinoDAO.listarLogTreinos();
         logTreinoAdapter = new LogTreinoAdapter(this.getContext(), logtreinoList);
         lista.setAdapter(logTreinoAdapter);
 

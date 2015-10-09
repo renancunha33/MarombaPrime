@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String BANCO_DADOS = "Mprime_db";
-    private static final int VERSAO = 13;
+    private static final int VERSAO = 16;
 
     public DatabaseHelper(Context context) {
         super(context, BANCO_DADOS, null, VERSAO);
@@ -28,6 +28,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "nm_treino text not null," +
                 " ds_tempo_treino integer)");
 
+        //LOG_TREINOS
+        db.execSQL("create table log_treinos" +
+                "(_id integer primary key autoincrement, " +
+                "dt_treino_log text not null," +
+                "Treino_ID_treino integer not null," +
+                "ds_tempo_real_log integer not null)");
+
         //EXERCICIOS
         db.execSQL("create table exercicios" +
                 "(_id integer primary key autoincrement," +
@@ -38,12 +45,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "Treino_ID_treino integer not null, " +
                 "ds_tempo_exercicio integer not null)");
 
-        //LOG_TREINOS
-        db.execSQL("create table log_treinos" +
-                "(_id integer primary key autoincrement, " +
-                "dt_treino_log text not null," +
-                "ds_tempo_real_log integer not null," +
-                "Treino_id_treino integer not null)");
 
     }
 
@@ -115,5 +116,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // returning lables
         return labels;
     }
+
 
 }

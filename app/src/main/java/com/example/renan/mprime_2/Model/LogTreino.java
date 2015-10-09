@@ -8,16 +8,16 @@ public class LogTreino {
     private Integer _id;
     private String data_log;
     private int tempo_real;
-    private Integer Treino_ID_treino;
+    private int treino_ID_treino;
 
     public LogTreino() {
     }
 
-    public LogTreino(Integer _id, String data_log, int tempo_real, Integer treino_ID_treino) {
+    public LogTreino(Integer _id, String data_log, int tempo_real, int treino_ID_treino ) {
         this._id = _id;
         this.data_log = data_log;
         this.tempo_real = tempo_real;
-        Treino_ID_treino = treino_ID_treino;
+        this.treino_ID_treino = treino_ID_treino;
     }
 
     public Integer get_id() {
@@ -44,11 +44,11 @@ public class LogTreino {
         this.tempo_real = tempo_real;
     }
 
-    public Integer getTreino_ID_treino() {
-        return Treino_ID_treino;
+    public int getTreino_ID_treino() {
+        return treino_ID_treino;
     }
 
     public void setTreino_ID_treino(Integer treino_ID_treino) {
-        Treino_ID_treino = treino_ID_treino;
+        this.treino_ID_treino = treino_ID_treino;
     }
 }

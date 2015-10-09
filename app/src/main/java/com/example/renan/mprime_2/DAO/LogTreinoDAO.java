@@ -4,8 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
-import com.example.renan.mprime_2.Model.Exercicio;
 import com.example.renan.mprime_2.Model.LogTreino;
 
 
@@ -39,13 +39,16 @@ public class LogTreinoDAO {
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.LogTreinos.TREINO_ID_TREINO)));
         return model;
     }
-
+    /*,*/
     public List<LogTreino> listarLogTreinos() {
         Cursor cursor = getDatabase().query(DatabaseHelper.LogTreinos.TABELA, DatabaseHelper.LogTreinos.COLUNAS, null, null, null, null, null);
         List<LogTreino> logtreinos = new ArrayList<LogTreino>();
+        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos._ID)));
+        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos.DS_TEMPO_REAL_LOG)));
+        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos.DT_TREINO_LOG)));
+        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos.TREINO_ID_TREINO)));
         while (cursor.moveToNext()) {
-
-           LogTreino model = CriarLogTreino(cursor);// RESOLVER LISTAGEM MAIS TARDE =====================================!!!!!!!!!!!!!!!!!!!!!
+            LogTreino model = CriarLogTreino(cursor);
             logtreinos.add(model);
         }
         cursor.close();
@@ -61,6 +64,7 @@ public class LogTreinoDAO {
         if ((Logtreino.get_id() != null)) {
             return database.update(DatabaseHelper.LogTreinos.TABELA, valores, "_id = ?", new String[]{Logtreino.get_id().toString()});
         } else {
+            Log.v(null,"AQUIIIIII");
             return getDatabase().insert(DatabaseHelper.LogTreinos.TABELA, null, valores);
         }
     }
@@ -80,17 +84,7 @@ public class LogTreinoDAO {
         }
         return null;
     }
-    public List<LogTreino> SelectLogPorID() {
-        List<LogTreino> logtreino = new ArrayList<LogTreino>();
-        Cursor cursor = getDatabase().rawQuery("SELECT * FROM log_treinos", null);
-        // looping through all rows and adding to list
-        while (cursor.moveToNext()) {
-           // LogTreino model = CriarLogTreino(cursor); ==========================RESOLVER!!!!!!!!!!!!
-           // logtreino.add(model);
-        }
-        cursor.close();
-        return  logtreino;
-    }
+
 
     public void fechar() {
         databaseHelper.close();
