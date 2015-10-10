@@ -97,7 +97,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
 
                     btDescartar.setEnabled(true);
                     btSalvar.setEnabled(true);
-                    imgButton.setBackgroundResource(R.drawable.start);
+                    imgButton.setBackgroundResource(R.drawable.pause);
                     ch.stop();
                     txtReal.setText(ch.getText());
                     ch.setText("00:00");
@@ -123,6 +123,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                 spinner.setEnabled(true);
                 btDescartar.setEnabled(false);
                 btSalvar.setEnabled(false);
+                imgButton.setBackgroundResource(R.drawable.play);
             }
         });
         btSalvar.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +139,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                 spinner.setEnabled(true);
                 btDescartar.setEnabled(false);
                 btSalvar.setEnabled(false);
+                imgButton.setBackgroundResource(R.drawable.play);
             }
         });
         return MyView;

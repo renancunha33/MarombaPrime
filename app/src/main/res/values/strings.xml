@@ -11,7 +11,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_example">NOVO</string>
+    <string name="action_example">Novo</string>
 
     <string name="action_settings">Configurações</string>
 </resources>

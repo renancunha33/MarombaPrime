@@ -84,15 +84,7 @@ public class NovoTreino_fragment extends Fragment {
                                 idd = treinoList.get(idposicao).get_id();
                                 treinoTempo = treinoList.get(idposicao).getTempo_treino();
                                 edtTreino.setText(treinoList.get(idposicao).getNome_treino());
-                                //  treinoDAO = new TreinoDAO(getContext());
-                                //  Treino model = new Treino();
-                                //  TextView txtnm = (TextView) view.findViewById(R.id.txt_nome_treino);
-                                //  EditText edtTreino = (EditText) MyView.findViewById(R.id.edtNomeTreino);
-                                //  String nm = String.valueOf(txtnm.getText());
-                                //  Log.v(null, String.valueOf(model));
-                                // Log.v(null, String.valueOf(treinoDAO.buscarTreinoPorNome_e(nm).getNome_treino()));
-                                //   edtTreino.setText(String.valueOf(nm));
-                                //   id_update = treinoDAO.buscarTreinoPorNome_e(nm).get_id();
+
                                 break;
                         }
                     }
@@ -121,13 +113,10 @@ public class NovoTreino_fragment extends Fragment {
             treinoDAO = new TreinoDAO(this.getContext());
             treino = new Treino();
             treino.setNome_treino(treinoNome);
-            treino.setTempo_treino(00); //TEMPORário!!!!
-//            try {
+            treino.setTempo_treino(00);
+//
             resultado = treinoDAO.SalvarTreino(treino);
-//            } catch (Exception e) {
-//                Toast.makeText(this.getContext(), String.valueOf(resultado), Toast.LENGTH_SHORT).show();
-//            }
-
+//
             if (resultado != -1 && resultado > 0) {
                 Toast.makeText(this.getContext(), "Salvo com sucesso", Toast.LENGTH_SHORT).show();
             } else {
@@ -168,12 +157,9 @@ public class NovoTreino_fragment extends Fragment {
             treino.set_id(id);
             treino.setNome_treino(treinoNome);
             treino.setTempo_treino(treinoTempo); //TEMPORário!!!!
-//            try {
+//
             resultado = treinoDAO.SalvarTreino(treino);
-//            } catch (Exception e) {
-//                Toast.makeText(this.getContext(), String.valueOf(resultado), Toast.LENGTH_SHORT).show();
-//            }
-
+//
             if (resultado != -1 && resultado > 0) {
                 Toast.makeText(this.getContext(), "Atualizado com sucesso", Toast.LENGTH_SHORT).show();
             } else {

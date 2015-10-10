@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.example.renan.mprime_2.Adapter.TreinoAdapter;
 import com.example.renan.mprime_2.DAO.TreinoDAO;
 import com.example.renan.mprime_2.Model.Treino;
-import com.example.renan.mprime_2.Util.Mensagem;
+
 
 import java.util.List;
 
