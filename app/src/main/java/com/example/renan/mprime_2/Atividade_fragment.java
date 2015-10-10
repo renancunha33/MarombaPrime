@@ -87,7 +87,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                         @Override
                         public void onChronometerTick(Chronometer chronometer) {
                             teste++;
-                            if (teste == 10) {
+                            if (teste == 900) {
                                 r.play();
                                 teste = 0;
                             }
