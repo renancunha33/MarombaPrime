@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dcf8c6">
+    android:background="#dcf8c6"
+    android:orientation="vertical">
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Novo Treino"
-        android:id="@+id/textView" />
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="Treinos"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:hint="Nome do treino"
+        android:id="@+id/edtNomeTreino"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtNomeTreino" />
+        android:hint="Nome do novo treino" />
 
     <Button
-        android:textColor="#ffffff"
+        android:id="@+id/button_salvarTreino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salvar"
-        android:id="@+id/button_salvarTreino"
         android:layout_gravity="center_horizontal"
-        android:background="#009688"/>
+        android:background="#009688"
+        android:text="Adcionar"
+        android:textColor="#ffffff" />
+
+    <ListView
+        android:id="@+id/lvTreino2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp">
+
+    </ListView>
 
 </LinearLayout>

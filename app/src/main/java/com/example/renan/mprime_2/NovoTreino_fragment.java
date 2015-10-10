@@ -1,13 +1,18 @@
 package com.example.renan.mprime_2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -24,8 +29,12 @@ public class NovoTreino_fragment extends Fragment {
     private View MyView;
     private EditText edtTreino;
     private Treino treino;
-    private TreinoDAO treinoDAO;
     private String treinoNome;
+    private ListView lista;
+    private List<Treino> treinoList;
+    private TreinoAdapter treinoAdapter;
+    private TreinoDAO treinoDAO;
+    int idposicao;
 
     @Nullable
     @Override
@@ -38,7 +47,36 @@ public class NovoTreino_fragment extends Fragment {
                 cadastrar();
             }
         });
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        lista = (ListView) MyView.findViewById(R.id.lvTreino2);
+        treinoDAO = new TreinoDAO(this.getContext());
+        treinoList = treinoDAO.listarTreinos();
+        treinoAdapter = new TreinoAdapter(this.getContext(), treinoList);
+        lista.setAdapter(treinoAdapter);
 
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                idposicao = position;
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                excluir();
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+                builder.setMessage("Deseja realmente excluir ?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+            }
+        });
         return MyView;
     }
 
@@ -71,9 +109,22 @@ public class NovoTreino_fragment extends Fragment {
             } else {
                 Toast.makeText(this.getContext(), "ERRO ao salvar!", Toast.LENGTH_SHORT).show();
             }
+            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(this).attach(this).commit();
             edtTreino.setText("");
         }
     }
+
+    public void excluir() {
+        int id = treinoList.get(idposicao).get_id();
+        treinoList.remove(idposicao);
+        treinoDAO.removerTreinos(id);
+        lista.invalidateViews();
+        Toast.makeText(this.getContext(), "Excluido", Toast.LENGTH_SHORT).show();
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+    }
+
 }
 
 

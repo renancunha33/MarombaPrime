@@ -57,19 +57,19 @@ public class MainActivity extends AppCompatActivity
             case 0:
                 MyFragment = new Atividade_fragment();
                 break;
+            //case 1:
+               // MyFragment = new Treinos_fragment();
+              //  break;
             case 1:
-                MyFragment = new Treinos_fragment();
-                break;
-            case 2:
                 MyFragment = new NovoTreino_fragment();
                 break;
-            case 3:
+            case 2:
                 MyFragment = new Exercicio_fragment();
                 break;
-            case 4:
+            case 3:
                 MyFragment = new LogTreino_fragment();
                 break;
-            case 5:
+            case 4:
                 MyFragment = new Sobre_fragment();
                 break;
         }
@@ -88,19 +88,19 @@ public class MainActivity extends AppCompatActivity
             case 1:
                 mTitle = getString(R.string.title_Treinar);
                 break;
+          //  case 2:
+               // mTitle = getString(R.string.title_Treinos);
+            //    break;
             case 2:
-                mTitle = getString(R.string.title_Treinos);
-                break;
-            case 3:
                 mTitle = getString(R.string.title_NovoTreino);
                 break;
-            case 4:
+            case 3:
                 mTitle = getString(R.string.title_AdicionaExercicios);
                 break;
-            case 5:
+            case 4:
                 mTitle = getString(R.string.title_LogTreinos);
                 break;
-            case 6:
+            case 5:
                 mTitle = getString(R.string.title_Sobre);
                 break;
         }
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_novotreino) {
-            onNavigationDrawerItemSelected(2);
+            onNavigationDrawerItemSelected(1);
             return true;
         }
 

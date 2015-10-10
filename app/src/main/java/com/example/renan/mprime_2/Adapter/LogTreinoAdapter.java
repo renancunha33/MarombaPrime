@@ -65,8 +65,8 @@ public class LogTreinoAdapter extends BaseAdapter {
             try {
                 treinoDAO = new TreinoDAO(context);
                 model = treinoDAO.buscarTreinoPorID(logTreino.getTreino_ID_treino());
-                txtNMtreino.setText("(" + model.getNome_treino() + "-");
-                txtTPtreino.setText(model.getTempo_treino() + "mins)");
+                txtNMtreino.setText("( " + model.getNome_treino());
+                txtTPtreino.setText(model.getTempo_treino() + "mins )");
             } catch (Exception e) {
 
                 Log.v(null, e.toString());
@@ -82,7 +82,7 @@ public class LogTreinoAdapter extends BaseAdapter {
 
 
         txtDataLog.setText(logTreino.getData_log());
-        txtTempoLog.setText(String.valueOf("real: "+logTreino.getTempo_real())+"mins");
+        txtTempoLog.setText(String.valueOf("real: " + logTreino.getTempo_real()) + "mins");
         txtID.setText(String.valueOf(logTreino.getTreino_ID_treino()));
 
         return view;

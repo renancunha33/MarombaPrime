@@ -102,8 +102,7 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.title_Treinar),
-                        getString(R.string.title_Treinos),
-                        getString(R.string.title_NovoTreino),
+                        "Treinos",
                         getString(R.string.title_AdicionaExercicios),
                         getString(R.string.title_LogTreinos),
                         getString(R.string.title_Sobre),
@@ -111,6 +110,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
+
 
     public boolean isDrawerOpen() {
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
