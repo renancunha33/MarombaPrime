@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -56,10 +57,12 @@ public class TreinoDAO {
 
     public long SalvarTreino(Treino treino) {
         ContentValues valores = new ContentValues();
+        //valores.put(DatabaseHelper.Treinos._ID,treino.get_id());
         valores.put(DatabaseHelper.Treinos.NM_TREINO, treino.getNome_treino());
         valores.put(DatabaseHelper.Treinos.DS_TEMPO_TREINO, treino.getTempo_treino());
         if ((treino.get_id() != null)) {
-            return database.update(DatabaseHelper.Treinos.TABELA, valores, "_id = ?", new String[]{treino.get_id().toString()});
+            Log.v(null, String.valueOf(treino.get_id().toString()));
+            return getDatabase().update(DatabaseHelper.Treinos.TABELA, valores, "_id = ?", new String[]{treino.get_id().toString()});
         } else {
             return getDatabase().insert(DatabaseHelper.Treinos.TABELA, null, valores);
         }
@@ -76,6 +79,16 @@ public class TreinoDAO {
         if (cursor.moveToNext()) {
             Treino model = CriarTreino(cursor);
             cursor.close();
+            return model;
+        }
+        return null;
+    }
+
+    public Treino buscarTreinoPorNomee(String nome) {
+        Cursor mCursor = getDatabase().rawQuery("SELECT _id  FROM treinos WHERE nm_treino = '" + nome + "'", null);
+        if (mCursor.moveToNext()) {
+            Treino model = CriarTreino(mCursor);
+            mCursor.close();
             return model;
         }
         return null;
