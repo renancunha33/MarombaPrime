@@ -89,8 +89,8 @@ public class NovoTreino_fragment extends Fragment {
                         }
                     }
                 };
-                builder.setMessage("O que você deseja fazer?").setPositiveButton("Excluir", dialogClickListener)
-                        .setNegativeButton("Atualizar", dialogClickListener).show();
+                builder.setMessage("O que deseja fazer?").setPositiveButton("Excluir", dialogClickListener)
+                        .setNegativeButton("Alterar", dialogClickListener).show();
             }
         });
         return MyView;

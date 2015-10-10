@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="#009688"
-        android:text="Adcionar"
+        android:text="Adicionar"
         android:textColor="#ffffff" />
 
     <ListView

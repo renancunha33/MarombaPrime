@@ -66,7 +66,7 @@ public class ExercicioDAO {
         valores.put(DatabaseHelper.Exercicios.TREINO_ID_TREINO, exercicio.getTreino_ID_treino());
 
         if ((exercicio.get_id() != null)) {
-            return database.update(TABELA, valores, "_id = ?", new String[]{exercicio.get_id().toString()});
+            return getDatabase().update(TABELA, valores, "_id = ?", new String[]{exercicio.get_id().toString()});
         } else {
             return getDatabase().insert(TABELA, null, valores);
         }
@@ -96,13 +96,13 @@ public class ExercicioDAO {
     public List<Exercicio> SelectExerciciosPorID(int id) {
         List<Exercicio> exercicios = new ArrayList<Exercicio>();
         Cursor cursor = getDatabase().rawQuery("SELECT * FROM exercicios WHERE Treino_ID_treino = '" + String.valueOf(id) + "'", null);
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios._ID)));
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.NM_EXERCICIO)));
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_SERIES_EXERCICIO)));
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_REPETICOES_EXERCICIO)));
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_CARGA_EXERCICIO)));
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_TEMPO_EXERCICIO)));
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.TREINO_ID_TREINO)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios._ID)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.NM_EXERCICIO)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_SERIES_EXERCICIO)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_REPETICOES_EXERCICIO)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_CARGA_EXERCICIO)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.DS_TEMPO_EXERCICIO)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.Exercicios.TREINO_ID_TREINO)));
         // looping through all rows and adding to list
         while (cursor.moveToNext()) {
             Exercicio model = CriarExercicio(cursor);
