@@ -39,14 +39,15 @@ public class LogTreinoDAO {
                 cursor.getInt(cursor.getColumnIndex(DatabaseHelper.LogTreinos.TREINO_ID_TREINO)));
         return model;
     }
+
     /*,*/
     public List<LogTreino> listarLogTreinos() {
         Cursor cursor = getDatabase().query(DatabaseHelper.LogTreinos.TABELA, DatabaseHelper.LogTreinos.COLUNAS, null, null, null, null, null);
         List<LogTreino> logtreinos = new ArrayList<LogTreino>();
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos._ID)));
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos.DS_TEMPO_REAL_LOG)));
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos.DT_TREINO_LOG)));
-        Log.v(null,String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos.TREINO_ID_TREINO)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos._ID)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos.DS_TEMPO_REAL_LOG)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos.DT_TREINO_LOG)));
+        Log.v(null, String.valueOf(cursor.getColumnIndex(DatabaseHelper.LogTreinos.TREINO_ID_TREINO)));
         while (cursor.moveToNext()) {
             LogTreino model = CriarLogTreino(cursor);
             logtreinos.add(model);
@@ -64,7 +65,7 @@ public class LogTreinoDAO {
         if ((Logtreino.get_id() != null)) {
             return database.update(DatabaseHelper.LogTreinos.TABELA, valores, "_id = ?", new String[]{Logtreino.get_id().toString()});
         } else {
-            Log.v(null,"AQUIIIIII");
+            Log.v(null, "AQUIIIIII");
             return getDatabase().insert(DatabaseHelper.LogTreinos.TABELA, null, valores);
         }
     }
@@ -74,15 +75,15 @@ public class LogTreinoDAO {
 
     }
 
-    public LogTreino buscarLogTreinoPorID(int id) {
-        Cursor cursor = getDatabase().query(DatabaseHelper.LogTreinos.TABELA,
-                DatabaseHelper.LogTreinos.COLUNAS, "_id = ?", new String[]{Integer.toString(id)}, null, null, null);
-        if (cursor.moveToNext()) {
-            LogTreino model = CriarLogTreino(cursor);
-            cursor.close();
-            return model;
+    public List<String[]> inerjoin(int id) {
+        Cursor cursor = getDatabase().rawQuery(null, new String[]{"SELECT nm_treino, ds_tempo_treino FROM treinos JOIN log_treinos ON '" + id + "' = treinos._id"});
+        List<String[]> loop = new ArrayList<String[]>();
+        while (cursor.moveToNext()) {
+            String[] model = {String.valueOf(cursor.getString(cursor.getColumnIndex("nm_treino"))), String.valueOf(cursor.getString(cursor.getColumnIndex("ds_tempo_treino")))};
+            loop.add(model);
         }
-        return null;
+        cursor.close();
+        return loop;
     }
 
 

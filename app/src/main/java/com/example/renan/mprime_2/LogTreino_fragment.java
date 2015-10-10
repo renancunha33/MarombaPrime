@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.renan.mprime_2.Adapter.LogTreinoAdapter;
@@ -25,7 +26,7 @@ import java.util.List;
 /**
  * Created by Renan on 30/09/2015.
  */
-public class LogTreino_fragment extends Fragment implements AdapterView.OnItemClickListener, DialogInterface.OnClickListener  {
+public class LogTreino_fragment extends Fragment implements AdapterView.OnItemClickListener, DialogInterface.OnClickListener {
 
     View MyView;
     private ListView lista;
@@ -33,20 +34,27 @@ public class LogTreino_fragment extends Fragment implements AdapterView.OnItemCl
     private LogTreinoAdapter logTreinoAdapter;
     private LogTreinoDAO logTreinoDAO;
     int idposicao;
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_log, container, (false));
         final AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
         lista = (ListView) MyView.findViewById(R.id.lvLog);
         logTreinoDAO = new LogTreinoDAO(getContext());
+        final TreinoDAO treinoDAO = new TreinoDAO(getContext());
         logtreinoList = logTreinoDAO.listarLogTreinos();
         logTreinoAdapter = new LogTreinoAdapter(this.getContext(), logtreinoList);
         lista.setAdapter(logTreinoAdapter);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
                 idposicao = position;
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                     @Override
@@ -88,3 +96,13 @@ public class LogTreino_fragment extends Fragment implements AdapterView.OnItemCl
     }
 }
 
+/*
+TextView txtIDtreino = (TextView) view.findViewById(R.id.txt_id_log);
+            TextView txtNMtreino = (TextView) view.findViewById(R.id.txt_nm_treino_log);
+            TextView txtTPtreino = (TextView) view.findViewById(R.id.txt_tempo_treino_log);
+
+            int idTreino = Integer.valueOf(String.valueOf(txtIDtreino));
+            Treino model = treinoDAO.buscarTreinoPorID(idTreino);
+            txtNMtreino.setText(model.getNome_treino());
+            txtTPtreino.setText(model.getTempo_treino() + " mins");
+ */

@@ -3,6 +3,7 @@ package com.example.renan.mprime_2.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.content.Intent.*;
 
+import com.example.renan.mprime_2.Atividade_fragment;
 import com.example.renan.mprime_2.LogTreino_fragment;
 import com.example.renan.mprime_2.MainActivity;
 import com.example.renan.mprime_2.Model.LogTreino;
@@ -26,7 +28,7 @@ public class LogTreinoAdapter extends BaseAdapter {
     private TreinoDAO treinoDAO;
     private Context context;
     private List<LogTreino> lista;
-    private int idtreino;
+    Treino model;
 
     public LogTreinoAdapter(Context ctx, List<LogTreino> logTreinos) {
         this.context = ctx;
@@ -50,31 +52,40 @@ public class LogTreinoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
+
         LogTreino logTreino = lista.get(position);
+
+
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.lista_log, null);
+            TextView txtNMtreino = (TextView) view.findViewById(R.id.txt_nm_treino_log);
+            TextView txtTPtreino = (TextView) view.findViewById(R.id.txt_tempo_treino_log);
+            Log.v(null, String.valueOf(logTreino.getTreino_ID_treino()));
+            try {
+                treinoDAO = new TreinoDAO(context);
+                model = treinoDAO.buscarTreinoPorID(logTreino.getTreino_ID_treino());
+                txtNMtreino.setText("(" + model.getNome_treino() + "-");
+                txtTPtreino.setText(model.getTempo_treino() + "mins)");
+            } catch (Exception e) {
+
+                Log.v(null, e.toString());
+            }
         }
 
 
         TextView txtDataLog = (TextView) view.findViewById(R.id.txt_data_log);
-        TextView txtNomeTreinoLog = (TextView) view.findViewById(R.id.txt_nm_treino_log); //valor vem da tabela TREINO
-        TextView txtTempoTreinoLog = (TextView) view.findViewById(R.id.txt_tempo_treino_log); //valor vem da tabela TREINO
         TextView txtID = (TextView) view.findViewById(R.id.txt_id_log);
         TextView txtTempoLog = (TextView) view.findViewById(R.id.txt_tempo_log);
+        //TextView txtNMtreino = (TextView) view.findViewById(R.id.txt_nm_treino_log);
+        //TextView txtTPtreino = (TextView) view.findViewById(R.id.txt_tempo_treino_log);
 
-        //treinoDAO = new TreinoDAO(this.context);
-        // idtreino = logTreino.getTreino_ID_treino();
-        // Treino model = TreinoDAO.buscarTreinoPorID(idtreino);
-        //txtNomeTreinoLog.setText(model.getNome_treino());
-        //txtTempoTreinoLog.setText(model.getTempo_treino());
 
         txtDataLog.setText(logTreino.getData_log());
-        txtTempoLog.setText(logTreino.getTempo_real()+"mins ");
-        txtID.setText("treino: "+logTreino.getTreino_ID_treino());
+        txtTempoLog.setText(String.valueOf("real: "+logTreino.getTempo_real())+"mins");
+        txtID.setText(String.valueOf(logTreino.getTreino_ID_treino()));
 
         return view;
     }
-
 
 }
