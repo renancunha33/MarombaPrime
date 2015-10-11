@@ -9,6 +9,7 @@
         android:id="@+id/txt_data_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
         android:text="00/00/0000"
@@ -18,7 +19,7 @@
         android:id="@+id/txt_nm_treino_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
         android:text="XXXXX"
         android:textStyle="bold" />
@@ -27,7 +28,7 @@
         android:id="@+id/txt_tempo_treino_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
         android:text="XXmins"
         android:textStyle="bold" />
@@ -36,7 +37,7 @@
         android:id="@+id/txt_tempo_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
         android:text="00:00"
         android:textStyle="bold" />
@@ -45,7 +46,7 @@
         android:id="@+id/txt_id_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
         android:text="00"
         android:textStyle="bold"
