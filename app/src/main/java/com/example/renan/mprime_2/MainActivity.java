@@ -1,6 +1,7 @@
 package com.example.renan.mprime_2;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -16,6 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.support.v4.widget.DrawerLayout;
+import android.widget.ActionMenuView;
+
+import at.markushi.ui.ActionView;
+import at.markushi.ui.action.BackAction;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -36,6 +41,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#006300")));
+        ActionView actionView = new ActionView(this);
+        actionView.setAction(new BackAction(), ActionView.ROTATE_COUNTER_CLOCKWISE);
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -58,8 +65,8 @@ public class MainActivity extends AppCompatActivity
                 MyFragment = new Atividade_fragment();
                 break;
             //case 1:
-               // MyFragment = new Treinos_fragment();
-              //  break;
+            // MyFragment = new Treinos_fragment();
+            //  break;
             case 1:
                 MyFragment = new NovoTreino_fragment();
                 break;
@@ -88,8 +95,8 @@ public class MainActivity extends AppCompatActivity
             case 1:
                 mTitle = getString(R.string.title_Treinar);
                 break;
-          //  case 2:
-               // mTitle = getString(R.string.title_Treinos);
+            //  case 2:
+            // mTitle = getString(R.string.title_Treinos);
             //    break;
             case 2:
                 mTitle = getString(R.string.title_NovoTreino);
@@ -104,16 +111,19 @@ public class MainActivity extends AppCompatActivity
                 mTitle = getString(R.string.title_Sobre);
                 break;
         }
+
     }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+       // actionBar.setTitle(mTitle);
     }
 
-
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
@@ -137,6 +147,21 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_novotreino) {
             onNavigationDrawerItemSelected(1);
+            return true;
+        }
+
+        if (id == R.id.action_ajuda) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog ajuda = builder.setTitle("Ajuda").setMessage
+                    ("Encontrou dificuldades?\n" +
+                            "Entre em contato conosco!\n" +
+                            "===========================\n" +
+                            "Desenvolvedor: Renan Cunha\n" +
+                            "Email: renan.cunha33@gmail.com\n" +
+                            "===========================\n" +
+                            "Empresa: HauseGroup\n" +
+                            "Email: hausegroup@gmail.com\n\n" +
+                            "OBS.: a aba 'SOBRE' pode te ajudar a utilizar o app.").setNeutralButton("OK", null).show();
             return true;
         }
 

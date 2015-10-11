@@ -39,6 +39,8 @@ public class LogTreino_fragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_log, container, (false));
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Log de treinos");
         final AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
         lista = (ListView) MyView.findViewById(R.id.lvLog);
         logTreinoDAO = new LogTreinoDAO(getContext());

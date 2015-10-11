@@ -49,6 +49,8 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_exercicio, container, (false));
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Exercicio");
         model = new Exercicio();
         final AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
         spinner = (Spinner) MyView.findViewById(R.id.Spinner01);

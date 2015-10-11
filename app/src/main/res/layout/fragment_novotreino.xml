@@ -5,16 +5,10 @@
     android:background="#dcf8c6"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:text="Treinos"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 
     <EditText
+        android:layout_marginTop="25dp"
         android:id="@+id/edtNomeTreino"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +27,10 @@
         android:id="@+id/lvTreino2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp">
 
     </ListView>
 

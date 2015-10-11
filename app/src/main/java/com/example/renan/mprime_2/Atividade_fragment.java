@@ -1,11 +1,13 @@
 package com.example.renan.mprime_2;
 
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -57,6 +59,11 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
         txtReal = (TextView) MyView.findViewById(R.id.txt_tempoReal_treino_);
         txtData = (TextView) MyView.findViewById(R.id.txt_data_treino_);
         txtID = (TextView) MyView.findViewById(R.id.id_txt);
+        final Vibrator v = (Vibrator) this.getContext().getSystemService(this.getActivity().VIBRATOR_SERVICE);
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        final Ringtone r = RingtoneManager.getRingtone(getContext(), notification);
+
+// Vibrate for 300 milliseconds
 
         spinner.setOnItemSelectedListener(this);
         btDescartar.setEnabled(false);
@@ -70,8 +77,8 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
         imgButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View button) {
-                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                final Ringtone r = RingtoneManager.getRingtone(getContext(), notification);
+                v.vibrate(100);
+
                 r.play();
                 button.setSelected(!button.isSelected());
 
@@ -89,6 +96,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                             teste++;
                             if (teste == 900) {
                                 r.play();
+                                v.vibrate(new long[]{0, 300, 30, 300},-1);
                                 teste = 0;
                             }
                         }
@@ -186,7 +194,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
             //Toast.makeText(this.getContext(), "oi "+hora, Toast.LENGTH_LONG).show();
         } else {
             hora = (Character.digit(minS.charAt(0), 10) * 10) + Character.digit(minS.charAt(1), 10);
-           // Toast.makeText(this.getContext(), "EITA" + hora, Toast.LENGTH_LONG).show();
+            // Toast.makeText(this.getContext(), "EITA" + hora, Toast.LENGTH_LONG).show();
         }
         logTreinoDAO = new LogTreinoDAO(this.getContext());
         logTreino = new LogTreino();

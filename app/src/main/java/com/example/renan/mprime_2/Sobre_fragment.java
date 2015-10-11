@@ -17,6 +17,8 @@ public class Sobre_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState){
         MyView = inflater.inflate(R.layout.fragment_sobre, container, (false));
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Sobre");
         return MyView;
     }
 

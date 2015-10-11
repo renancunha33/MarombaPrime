@@ -1,6 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_novotreino" android:title="@string/action_example"
-        app:showAsAction="withText|ifRoom" />
-    </menu>
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/action_novotreino"
+        android:title="Novo treino"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_ajuda"
+        android:title="Ajuda"
+        app:showAsAction="never" />
+</menu>

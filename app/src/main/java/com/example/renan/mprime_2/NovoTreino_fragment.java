@@ -44,6 +44,10 @@ public class NovoTreino_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_novotreino, container, (false));
         Button SalvaTreino = (Button) MyView.findViewById(R.id.button_salvarTreino);
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Treinos");
+
+
         SalvaTreino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
