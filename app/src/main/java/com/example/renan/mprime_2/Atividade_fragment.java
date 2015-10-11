@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +97,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                             teste++;
                             if (teste == 900) {
                                 r.play();
-                                v.vibrate(new long[]{0, 300, 30, 300},-1);
+                                v.vibrate(new long[]{0, 300, 30, 300}, -1);
                                 teste = 0;
                             }
                         }
@@ -132,6 +133,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                 btDescartar.setEnabled(false);
                 btSalvar.setEnabled(false);
                 imgButton.setBackgroundResource(R.drawable.play);
+
             }
         });
         btSalvar.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +150,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                 btDescartar.setEnabled(false);
                 btSalvar.setEnabled(false);
                 imgButton.setBackgroundResource(R.drawable.play);
+
             }
         });
         return MyView;
