@@ -116,14 +116,17 @@ public class MainActivity extends AppCompatActivity
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
        // actionBar.setTitle(mTitle);
     }
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.halter2);
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer

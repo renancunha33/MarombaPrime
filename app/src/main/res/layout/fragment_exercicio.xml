@@ -2,29 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#dcf8c6">
+    android:background="#dcf8c6"
+    android:orientation="vertical">
 
-
-
-        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Spinner
-        android:layout_marginTop="25dp"
         android:id="@+id/Spinner01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
         android:background="#009688"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/edtExercicio"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Nome do Exercício"
-        android:text=""/>
+        android:text="" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -37,7 +34,7 @@
             android:layout_height="wrap_content"
             android:hint="Series"
             android:inputType="number"
-            android:text=""/>
+            android:text="" />
         <!-- Series -->
         <TextView
             android:layout_width="wrap_content"
@@ -50,7 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="Repetições"
             android:inputType="number"
-            android:text=""/>
+            android:text="" />
 
         <EditText
             android:id="@+id/edtTreinoRep"
@@ -83,27 +80,27 @@
             android:layout_height="wrap_content"
             android:hint="Tempo (minutos c/tempo de descanso)"
             android:inputType="number"
-            android:text=""/>
+            android:text="" />
 
         <Button
             android:id="@+id/btSalvarExercicio"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Salvar Exercicio"
-            android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:background="#009688"
-            android:textColor="#ffffff"/>
+            android:text="Salvar Exercicio"
+            android:textColor="#ffffff" />
 
         <ListView
-            android:layout_marginTop="10dp"
             android:id="@+id/lvExec"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp">>
+            android:layout_marginTop="10dp">>
 
         </ListView>
 
