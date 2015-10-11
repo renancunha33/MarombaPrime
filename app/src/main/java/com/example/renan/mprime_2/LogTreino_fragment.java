@@ -72,8 +72,8 @@ public class LogTreino_fragment extends Fragment implements AdapterView.OnItemCl
                         }
                     }
                 };
-                builder.setMessage("Deseja realmente excluir ?").setPositiveButton("Yes", dialogClickListener)
-                        .setNegativeButton("No", dialogClickListener).show();
+                builder.setMessage("Deseja realmente excluir ?").setPositiveButton("Sim", dialogClickListener)
+                        .setNegativeButton("Não", dialogClickListener).show();
             }
         });
         return MyView;
