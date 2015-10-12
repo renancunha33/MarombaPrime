@@ -1,18 +1,12 @@
 package com.example.renan.mprime_2;
 
-import android.app.NotificationManager;
-import android.content.DialogInterface;
-import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.renan.mprime_2.DAO.DatabaseHelper;
-import com.example.renan.mprime_2.DAO.ExercicioDAO;
 import com.example.renan.mprime_2.DAO.LogTreinoDAO;
 import com.example.renan.mprime_2.DAO.TreinoDAO;
-import com.example.renan.mprime_2.Model.Exercicio;
 import com.example.renan.mprime_2.Model.LogTreino;
 import com.example.renan.mprime_2.Model.Treino;
 
@@ -52,62 +44,53 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_atividade, container, (false));
+
         final Button btDescartar = (Button) MyView.findViewById(R.id.btDescartarAtividade);
         final Button btSalvar = (Button) MyView.findViewById(R.id.btSalvarAtividade);
+        final MainActivity main = new MainActivity();
+        final Vibrator v = (Vibrator) this.getContext().getSystemService(this.getActivity().VIBRATOR_SERVICE);
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        final Ringtone r = RingtoneManager.getRingtone(getContext(), notification);
+        final Calendar c = Calendar.getInstance();
+        final Chronometer ch = (Chronometer) MyView.findViewById(R.id.chronometer);
+        final ImageButton imgButton = (ImageButton) MyView.findViewById(R.id.imageButton);
+        ch.setText(MainActivity.tempo);
         spinner = (Spinner) MyView.findViewById(R.id.Spinner02);
         txtNome = (TextView) MyView.findViewById(R.id.txt_nm_treino_);
         txtTempo = (TextView) MyView.findViewById(R.id.txt_tempo_treino_);
         txtReal = (TextView) MyView.findViewById(R.id.txt_tempoReal_treino_);
         txtData = (TextView) MyView.findViewById(R.id.txt_data_treino_);
         txtID = (TextView) MyView.findViewById(R.id.id_txt);
-        final Vibrator v = (Vibrator) this.getContext().getSystemService(this.getActivity().VIBRATOR_SERVICE);
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        final Ringtone r = RingtoneManager.getRingtone(getContext(), notification);
 
-// Vibrate for 300 milliseconds
-
+        if(!ch.getText().equals("00:00")){
+            spinner.setEnabled(false);
+        }
         spinner.setOnItemSelectedListener(this);
         btDescartar.setEnabled(false);
         btSalvar.setEnabled(false);
         loadSpinnerData();
-        final Calendar c = Calendar.getInstance();
-        final Chronometer ch = (Chronometer) MyView.findViewById(R.id.chronometer);
-        final ImageButton imgButton = (ImageButton) MyView.findViewById(R.id.imageButton);
-
 
         imgButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View button) {
                 v.vibrate(100);
-
                 r.play();
                 button.setSelected(!button.isSelected());
 
                 if (button.isSelected()) {
+
                     btDescartar.setEnabled(false);
                     btSalvar.setEnabled(false);
                     spinner.setEnabled(false);
                     imgButton.setBackgroundResource(R.drawable.stop);
-                    ch.setBase(SystemClock.elapsedRealtime());
-                    ch.start();
+                    main.chstart(true, ch, r, v);
 
-                    ch.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-                        @Override
-                        public void onChronometerTick(Chronometer chronometer) {
-                            teste++;
-                            if (teste == 900) {
-                                r.play();
-                                v.vibrate(new long[]{0, 300, 30, 300}, -1);
-                                teste = 0;
-                            }
-                        }
-                    });
                 } else {
 
                     btDescartar.setEnabled(true);
                     btSalvar.setEnabled(true);
                     imgButton.setBackgroundResource(R.drawable.pause);
-                    ch.stop();
+                    main.chstart(false, ch, r, v);
                     txtReal.setText(ch.getText());
                     ch.setText("00:00");
                     teste = 0;
@@ -141,7 +124,6 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
             @Override
             public void onClick(View v) {
                 cadastrar();
-                // Toast.makeText(getContext(), "Em fase de implementação", Toast.LENGTH_SHORT).show();
                 imgButton.setEnabled(true);
                 ch.setText("00:00");
                 txtReal.setText("--------------");
@@ -153,6 +135,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
 
             }
         });
+        setRetainInstance(true);
         return MyView;
     }
 
@@ -194,11 +177,10 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
         int id = Integer.valueOf(txtID.getText().toString());
         if ((minS.charAt(1)) == ':') {
             hora = (Character.digit(minS.charAt(0), 10) * 60) + (Character.digit(minS.charAt(2), 10) * 10) + Character.digit(minS.charAt(3), 10);
-            //Toast.makeText(this.getContext(), "oi "+hora, Toast.LENGTH_LONG).show();
         } else {
             hora = (Character.digit(minS.charAt(0), 10) * 10) + Character.digit(minS.charAt(1), 10);
-            // Toast.makeText(this.getContext(), "EITA" + hora, Toast.LENGTH_LONG).show();
         }
+
         logTreinoDAO = new LogTreinoDAO(this.getContext());
         logTreino = new LogTreino();
 
@@ -217,4 +199,10 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
         }
 
     }
+
+    public void onSaveInstanceState(Bundle outState) {
+        setRetainInstance(true);
+        super.onSaveInstanceState(outState);
+    }
+
 }

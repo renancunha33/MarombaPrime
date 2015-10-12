@@ -25,7 +25,6 @@ public class Sobre_fragment extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setVerticalScrollBarEnabled(false);
         webView.getSettings().setAppCacheEnabled(true);
-        webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setSaveFormData(true);
         webView.loadUrl("file:///android_res/raw/index.html");
         return MyView;

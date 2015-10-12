@@ -69,8 +69,8 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
                 AtualizarTreino();
                 if (idd == 0) {
                     cadastrar();
-                    Log.v(null,"CAFEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-                  //  AtualizarTreino();
+                    Log.v(null, "CAFEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                    //  AtualizarTreino();
 
                 } else {
                     String idi = spinner.getSelectedItem().toString();
@@ -188,13 +188,21 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
             validacao = true;
         }
         String exercicioCarga = String.valueOf(txtCargaExec.getText());
-        if (exercicioCarga == null || exercicioTempo.equals("")) {
+        if (exercicioCarga == null || exercicioCarga.equals("")) {
             validacao = false;
             txtCargaExec.setError("Campo Obrigatório");
         } else {
             validacao = true;
         }
-
+        if (exercicioCarga == null || exercicioCarga.equals("") || exercicioTempo == null || exercicioTempo.equals("") ||
+                exercicioRepet == null || exercicioRepet.equals("") || exercicioSerie == null || exercicioSerie.equals("") ||
+                exercicioNome == null || exercicioNome.equals("")) {
+            validacao = false;
+            Log.v(null, "treeeeeeeeeeeeeeeeeee");
+        } else {
+            validacao = true;
+            Log.v(null, "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+        }
         if (validacao) {
             exercicioDAO = new ExercicioDAO(this.getContext());
             exercicio = new Exercicio();
@@ -309,11 +317,20 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
             validacao = true;
         }
         String exercicioCarga = String.valueOf(txtCargaExec.getText());
-        if (exercicioCarga == null || exercicioTempo.equals("")) {
+        if (exercicioCarga == null || exercicioCarga.equals("")) {
             validacao = false;
             txtCargaExec.setError("Campo Obrigatório");
         } else {
             validacao = true;
+        }
+        if (exercicioCarga == null || exercicioCarga.equals("") || exercicioTempo == null || exercicioTempo.equals("") ||
+                exercicioRepet == null || exercicioRepet.equals("") || exercicioSerie == null || exercicioSerie.equals("") ||
+                exercicioNome == null || exercicioNome.equals("")) {
+            validacao = false;
+            Log.v(null, "treeeeeeeeeeeeeeeeeee");
+        } else {
+            validacao = true;
+            Log.v(null, "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
         }
         if (validacao) {
             txtTempo = (EditText) MyView.findViewById(R.id.edtTempo);
@@ -398,13 +415,21 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
             validacao = true;
         }
         String exercicioCarga = String.valueOf(txtCargaExec.getText());
-        if (exercicioCarga == null || exercicioTempo.equals("")) {
+        if (exercicioCarga == null || exercicioCarga.equals("")) {
             validacao = false;
             txtCargaExec.setError("Campo Obrigatório");
         } else {
             validacao = true;
         }
-
+        if (exercicioCarga == null || exercicioCarga.equals("") || exercicioTempo == null || exercicioTempo.equals("") ||
+                exercicioRepet == null || exercicioRepet.equals("") || exercicioSerie == null || exercicioSerie.equals("") ||
+                exercicioNome == null || exercicioNome.equals("")) {
+            Log.v(null, "treeeeeeeeeeeeeeeeeee");
+            validacao = false;
+        } else {
+            validacao = true;
+            Log.v(null, "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+        }
         if (validacao) {
             exercicioDAO = new ExercicioDAO(this.getContext());
             exercicio = new Exercicio();

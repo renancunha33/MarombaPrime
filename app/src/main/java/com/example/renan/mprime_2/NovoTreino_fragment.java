@@ -52,6 +52,7 @@ public class NovoTreino_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.v(null, String.valueOf(idd));
+
                 if (idd == 0) {
                     cadastrar();
                 } else {
@@ -142,7 +143,7 @@ public class NovoTreino_fragment extends Fragment {
         ft.detach(this).attach(this).commit();
     }
 
-    public void atualizar(int id, int treinoTempo) {
+    public int atualizar(int id, int treinoTempo) {
         long resultado = 0;
         boolean validacao;
         edtTreino = (EditText) MyView.findViewById(R.id.edtNomeTreino);
@@ -151,6 +152,7 @@ public class NovoTreino_fragment extends Fragment {
         if (treinoNome == null || treinoNome.equals("")) {
             validacao = false;
             edtTreino.setError("Campo obrigatório");
+            return id;
         } else {
             validacao = true;
         }
@@ -172,7 +174,9 @@ public class NovoTreino_fragment extends Fragment {
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.detach(this).attach(this).commit();
             edtTreino.setText("");
+
         }
+        return 0;
     }
 }
 

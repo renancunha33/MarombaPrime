@@ -5,6 +5,11 @@ import android.app.AlertDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.SystemClock;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -18,12 +23,12 @@ import android.view.ViewGroup;
 
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ActionMenuView;
-
+import android.widget.Chronometer;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-
+    public static String tempo = "00:00";
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -49,7 +54,49 @@ public class MainActivity extends AppCompatActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
     }
+
+    public void chstart(boolean i, final Chronometer ch, final Ringtone r, final Vibrator v) {
+        int stoppedMilliseconds = 0;
+        if (i) {
+            String chronoText = ch.getText().toString();
+            String array[] = chronoText.split(":");
+            if (array.length == 2) {
+                stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 1000
+                        + Integer.parseInt(array[1]) * 1000;
+            } else if (array.length == 3) {
+                stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 60 * 1000
+                        + Integer.parseInt(array[1]) * 60 * 1000
+                        + Integer.parseInt(array[2]) * 1000;
+            }
+
+            ch.setBase(SystemClock.elapsedRealtime() - stoppedMilliseconds);
+            ch.start();
+
+            //ch.setBase(SystemClock.elapsedRealtime());
+            //ch.start();
+            final int[] teste = {0};
+            ch.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+                @Override
+                public void onChronometerTick(Chronometer chronometer) {
+                    teste[0]++;
+                    if (teste[0] == 900) {
+                        //r.play();
+                        //v.vibrate(new long[]{0, 300, 30, 300}, -1);
+                        teste[0] = 0;
+                    }
+                    tempo = String.valueOf(ch.getText());
+                }
+            });
+        } else
+
+        {
+            ch.stop();
+        }
+    }
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -117,13 +164,14 @@ public class MainActivity extends AppCompatActivity
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
-       // actionBar.setTitle(mTitle);
+        // actionBar.setTitle(mTitle);
     }
 
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.halter2);
@@ -207,6 +255,12 @@ public class MainActivity extends AppCompatActivity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+
+    }
+
+
+    public void boo(boolean what) {
+        mNavigationDrawerFragment.lock(what);
     }
 
 }
