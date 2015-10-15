@@ -69,7 +69,7 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
                 AtualizarTreino();
                 if (idd == 0) {
                     cadastrar();
-                    Log.v(null, "CAFEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                    Log.v(null, "Cadastrar");
                     //  AtualizarTreino();
 
                 } else {

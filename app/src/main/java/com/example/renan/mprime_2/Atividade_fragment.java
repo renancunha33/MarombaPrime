@@ -1,5 +1,7 @@
 package com.example.renan.mprime_2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -14,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,7 +47,6 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_atividade, container, (false));
-
         final Button btDescartar = (Button) MyView.findViewById(R.id.btDescartarAtividade);
         final Button btSalvar = (Button) MyView.findViewById(R.id.btSalvarAtividade);
         final MainActivity main = new MainActivity();
@@ -54,6 +56,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
         final Calendar c = Calendar.getInstance();
         final Chronometer ch = (Chronometer) MyView.findViewById(R.id.chronometer);
         final ImageButton imgButton = (ImageButton) MyView.findViewById(R.id.imageButton);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
         ch.setText(MainActivity.tempo);
         spinner = (Spinner) MyView.findViewById(R.id.Spinner02);
         txtNome = (TextView) MyView.findViewById(R.id.txt_nm_treino_);
@@ -62,8 +65,9 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
         txtData = (TextView) MyView.findViewById(R.id.txt_data_treino_);
         txtID = (TextView) MyView.findViewById(R.id.id_txt);
 
-        if(!ch.getText().equals("00:00")){
+        if (!ch.getText().equals("00:00")) {
             spinner.setEnabled(false);
+            Toast.makeText(this.getContext(), "Aperte o botão play para continuar a contagem do tempo!", Toast.LENGTH_LONG).show();
         }
         spinner.setOnItemSelectedListener(this);
         btDescartar.setEnabled(false);
@@ -72,36 +76,80 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
 
         imgButton.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View button) {
+            public void onClick(final View button) {
                 v.vibrate(100);
                 r.play();
+
                 button.setSelected(!button.isSelected());
 
                 if (button.isSelected()) {
+                    if (!ch.getText().equals("00:00")) {
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
+                                switch (which) {
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        btDescartar.setEnabled(true);
+                                        btSalvar.setEnabled(true);
+                                        imgButton.setBackgroundResource(R.drawable.pause);
+                                        main.chstart(false, ch, r, v);
+                                        txtReal.setText(ch.getText());
+                                        ch.setText("00:00");
+                                        teste = 0;
+                                        int day = c.get(Calendar.DAY_OF_MONTH);
+                                        int month = c.get(Calendar.MONTH);
+                                        int year = c.get(Calendar.YEAR);
+                                        txtData.setText(day + "/" + (month + 1) + "/" + year);
+                                        imgButton.setEnabled(false);
+                                        Toast.makeText(getContext(), "Salve ou descarte a Atividade para treinar novamente! ", Toast.LENGTH_LONG).show();
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        break;
+                                }
+                            }
+                        };
+                        builder.setMessage("Deseja realmente parar o treino?").setPositiveButton("Sim", dialogClickListener)
+                                .setNegativeButton("Não", dialogClickListener).show();
+                    }
                     btDescartar.setEnabled(false);
                     btSalvar.setEnabled(false);
                     spinner.setEnabled(false);
                     imgButton.setBackgroundResource(R.drawable.stop);
                     main.chstart(true, ch, r, v);
-
                 } else {
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    btDescartar.setEnabled(true);
-                    btSalvar.setEnabled(true);
-                    imgButton.setBackgroundResource(R.drawable.pause);
-                    main.chstart(false, ch, r, v);
-                    txtReal.setText(ch.getText());
-                    ch.setText("00:00");
-                    teste = 0;
-                    int day = c.get(Calendar.DAY_OF_MONTH);
-                    int month = c.get(Calendar.MONTH);
-                    int year = c.get(Calendar.YEAR);
-                    txtData.setText(day + "/" + (month + 1) + "/" + year);
-                    imgButton.setEnabled(false);
-                    Toast.makeText(getContext(), "Salve ou descarte a Atividade para treinar novamente! ", Toast.LENGTH_LONG).show();
+                            switch (which) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    btDescartar.setEnabled(true);
+                                    btSalvar.setEnabled(true);
+                                    imgButton.setBackgroundResource(R.drawable.pause);
+                                    main.chstart(false, ch, r, v);
+                                    txtReal.setText(ch.getText());
+                                    ch.setText("00:00");
+                                    teste = 0;
+                                    int day = c.get(Calendar.DAY_OF_MONTH);
+                                    int month = c.get(Calendar.MONTH);
+                                    int year = c.get(Calendar.YEAR);
+                                    txtData.setText(day + "/" + (month + 1) + "/" + year);
+                                    imgButton.setEnabled(false);
+                                    Toast.makeText(getContext(), "Salve ou descarte a Atividade para treinar novamente! ", Toast.LENGTH_LONG).show();
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    break;
+                            }
+
+                        }
+
+                    };
+                    builder.setMessage("Deseja realmente parar o treino?").setPositiveButton("Sim", dialogClickListener)
+                            .setNegativeButton("Não", dialogClickListener).show();
                 }
-
             }
         });
 
@@ -116,6 +164,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                 btDescartar.setEnabled(false);
                 btSalvar.setEnabled(false);
                 imgButton.setBackgroundResource(R.drawable.play);
+                MainActivity.tempo = "00:00";
 
             }
         });
@@ -132,6 +181,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                 btDescartar.setEnabled(false);
                 btSalvar.setEnabled(false);
                 imgButton.setBackgroundResource(R.drawable.play);
+                MainActivity.tempo = "00:00";
 
             }
         });

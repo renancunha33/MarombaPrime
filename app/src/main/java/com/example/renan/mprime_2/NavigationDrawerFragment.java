@@ -101,7 +101,7 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 new String[]{
-                        getString(R.string.title_Treinar),
+                        "Atividades",
                         "Treinos",
                         getString(R.string.title_AdicionaExercicios),
                         getString(R.string.title_LogTreinos),
@@ -282,10 +282,11 @@ public class NavigationDrawerFragment extends Fragment {
          */
         void onNavigationDrawerItemSelected(int position);
     }
-    public void lock(boolean what){
-        if (what){
+
+    public void lock(boolean what) {
+        if (what) {
             mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        }else {
+        } else {
             mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         }
     }

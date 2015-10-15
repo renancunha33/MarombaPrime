@@ -5,18 +5,28 @@
     android:background="#dcf8c6"
     android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/edtTreinoRep"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:gravity="right"
+        android:hint="ID"
+        android:text="ID"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="invisible" />
 
     <Spinner
         android:id="@+id/Spinner01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:background="#009688"
         android:textColor="#ffffff" />
 
     <EditText
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:id="@+id/edtExercicio"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -24,6 +34,8 @@
         android:text="" />
 
     <LinearLayout
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -49,23 +61,15 @@
             android:inputType="number"
             android:text="" />
 
-        <EditText
-            android:id="@+id/edtTreinoRep"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:gravity="right"
-            android:hint="ID"
-            android:text="ID"
-            android:visibility="invisible" />
+
 
     </LinearLayout>
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <EditText
             android:id="@+id/edtCarga"
             android:layout_width="match_parent"
@@ -73,14 +77,22 @@
             android:hint="Carga(kg)"
             android:inputType="number" />
 
-        <!-- TEMPO -->
         <EditText
             android:id="@+id/edtTempo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tempo (minutos c/tempo de descanso)"
+            android:hint="Tempo (mins)"
             android:inputType="number"
             android:text="" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <!-- TEMPO -->
+
 
         <Button
             android:id="@+id/btSalvarExercicio"

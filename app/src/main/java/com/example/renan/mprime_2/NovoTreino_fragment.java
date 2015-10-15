@@ -43,7 +43,7 @@ public class NovoTreino_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_novotreino, container, (false));
-        Button SalvaTreino = (Button) MyView.findViewById(R.id.button_salvarTreino);
+        final Button SalvaTreino = (Button) MyView.findViewById(R.id.button_salvarTreino);
         ((MainActivity) getActivity())
                 .setActionBarTitle("Treinos");
 
@@ -59,6 +59,7 @@ public class NovoTreino_fragment extends Fragment {
                     atualizar(idd, treinoTempo);
                     idd = 0;
                     treinoTempo = 0;
+                    SalvaTreino.setText("Adicionar");
                 }
             }
         });
@@ -79,8 +80,22 @@ public class NovoTreino_fragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
-                                excluir();
 
+                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case DialogInterface.BUTTON_POSITIVE:
+                                                excluir();
+                                                break;
+                                            case DialogInterface.BUTTON_NEGATIVE:
+                                                break;
+                                        }
+                                    }
+                                };
+                                builder.setMessage("Tem certeza?").setPositiveButton("Sim", dialogClickListener)
+                                        .setNegativeButton("Não", dialogClickListener).show();
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
@@ -89,13 +104,13 @@ public class NovoTreino_fragment extends Fragment {
                                 idd = treinoList.get(idposicao).get_id();
                                 treinoTempo = treinoList.get(idposicao).getTempo_treino();
                                 edtTreino.setText(treinoList.get(idposicao).getNome_treino());
-
+                                SalvaTreino.setText("Alterar");
                                 break;
                         }
                     }
                 };
-                builder.setMessage("O que deseja fazer?").setPositiveButton("Excluir", dialogClickListener)
-                        .setNegativeButton("Alterar", dialogClickListener).show();
+                builder.setMessage("O que deseja fazer com ess treino?\n(toque fora da caixa para cancelar)").setPositiveButton("Excluir treino", dialogClickListener)
+                        .setNegativeButton("Alterar nome", dialogClickListener).show();
             }
         });
         return MyView;
@@ -123,7 +138,7 @@ public class NovoTreino_fragment extends Fragment {
             resultado = treinoDAO.SalvarTreino(treino);
 //
             if (resultado != -1 && resultado > 0) {
-                Toast.makeText(this.getContext(), "Salvo com sucesso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.getContext(), "Salvo com sucesso \nVá em 'Exercicios' e adicione exercicios ao seu novo treino.", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this.getContext(), "ERRO ao salvar!", Toast.LENGTH_SHORT).show();
             }
