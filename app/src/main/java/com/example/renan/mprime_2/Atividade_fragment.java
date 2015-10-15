@@ -42,11 +42,13 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
     LogTreinoDAO logTreinoDAO;
     LogTreino logTreino;
     //  MediaPlayer som, som2;
+    int x;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MyView = inflater.inflate(R.layout.fragment_atividade, container, (false));
+        x = 0;
         final Button btDescartar = (Button) MyView.findViewById(R.id.btDescartarAtividade);
         final Button btSalvar = (Button) MyView.findViewById(R.id.btSalvarAtividade);
         final MainActivity main = new MainActivity();
@@ -68,6 +70,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
         if (!ch.getText().equals("00:00")) {
             spinner.setEnabled(false);
             Toast.makeText(this.getContext(), "Aperte o botão play para continuar a contagem do tempo!", Toast.LENGTH_LONG).show();
+            x = 1;
         }
         spinner.setOnItemSelectedListener(this);
         btDescartar.setEnabled(false);
@@ -83,7 +86,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                 button.setSelected(!button.isSelected());
 
                 if (button.isSelected()) {
-                    if (!ch.getText().equals("00:00")) {
+                    if (!ch.getText().equals("00:00") && x == 0) {
                         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -150,6 +153,7 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
                     builder.setMessage("Deseja realmente parar o treino?").setPositiveButton("Sim", dialogClickListener)
                             .setNegativeButton("Não", dialogClickListener).show();
                 }
+                x = 0;
             }
         });
 
