@@ -75,8 +75,6 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
             Toast.makeText(this.getContext(), "Aperte o botão play para continuar a contagem do tempo!", Toast.LENGTH_LONG).show();
 
             x = 1;
-        } else {
-
         }
         spinner.setOnItemSelectedListener(this);
         btDescartar.setEnabled(false);
