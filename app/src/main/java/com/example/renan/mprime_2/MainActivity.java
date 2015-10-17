@@ -29,6 +29,10 @@ import android.widget.Chronometer;
 public class MainActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     public static String tempo = "00:00";
+    public static String nomeatividade = "";
+    public static String tempoatividade = "";
+    public static int posicaoo = 0;
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */

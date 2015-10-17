@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,8 +70,13 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
 
         if (!ch.getText().equals("00:00")) {
             spinner.setEnabled(false);
+            txtNome.setText(MainActivity.nomeatividade);
+            txtTempo.setText(MainActivity.tempoatividade);
             Toast.makeText(this.getContext(), "Aperte o botão play para continuar a contagem do tempo!", Toast.LENGTH_LONG).show();
+
             x = 1;
+        } else {
+
         }
         spinner.setOnItemSelectedListener(this);
         btDescartar.setEnabled(false);
@@ -195,15 +201,29 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
 
     private void loadSpinnerData() {
         // database handler
-        DatabaseHelper db = new DatabaseHelper(this.getContext());
-        // Spinner Drop down elements
-        List<String> lables = db.getAllLabels();
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, lables);
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
+        if (MainActivity.posicaoo == 0) {
+            DatabaseHelper db = new DatabaseHelper(this.getContext());
+            // Spinner Drop down elements
+            List<String> lables = db.getAllLabels();
+            // Creating adapter for spinner
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, lables);
+            // Drop down layout style - list view with radio button
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // attaching data adapter to spinner
+            spinner.setAdapter(dataAdapter);
+        }else {
+            DatabaseHelper db = new DatabaseHelper(this.getContext());
+            // Spinner Drop down elements
+            List<String> lables = db.getAllLabels();
+            // Creating adapter for spinner
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, lables);
+            // Drop down layout style - list view with radio button
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            // attaching data adapter to spinner
+            spinner.setAdapter(dataAdapter);
+            spinner.setSelection(MainActivity.posicaoo);
+            Log.v(null, "recebeu o valor: " + String.valueOf(MainActivity.posicaoo));
+        }
     }
 
     @Override
@@ -216,7 +236,10 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
         txtTempo.setText(String.valueOf(model.getTempo_treino()));
         String strProjectId = treinoDAO.buscarTreinoPorNome(idi);
         txtID.setText(String.valueOf(strProjectId));
-
+        MainActivity.nomeatividade = txtNome.getText().toString();
+        MainActivity.tempoatividade = txtTempo.getText().toString();
+        MainActivity.posicaoo = spinner.getSelectedItemPosition();
+        Log.v(null, "Setou o valor: " + String.valueOf(MainActivity.posicaoo));
     }
 
     @Override
