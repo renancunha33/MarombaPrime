@@ -1,4 +1,4 @@
-package com.example.renan.mprime_2.DAO;
+package com.renan.muscleprime.DAO;
 /**
  * Created by Renan on 21/09/2015.
  */

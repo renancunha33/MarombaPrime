@@ -1,28 +1,23 @@
-package com.example.renan.mprime_2;
+package com.renan.muscleprime;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaPlayer;
 import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ActionMenuView;
 import android.widget.Chronometer;
 
 

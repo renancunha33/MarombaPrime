@@ -1,4 +1,4 @@
-package com.example.renan.mprime_2.Model;
+package com.renan.muscleprime.Model;
 
 /**
  * Created by Renan on 21/09/2015.

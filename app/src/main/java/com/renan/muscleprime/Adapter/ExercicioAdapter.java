@@ -1,4 +1,4 @@
-package com.example.renan.mprime_2.Adapter;
+package com.renan.muscleprime.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.renan.mprime_2.Model.Exercicio;
-import com.example.renan.mprime_2.Model.LogTreino;
-import com.example.renan.mprime_2.R;
+
+import com.renan.muscleprime.Model.Exercicio;
+import com.renan.muscleprime.R;
 
 import java.util.List;
 

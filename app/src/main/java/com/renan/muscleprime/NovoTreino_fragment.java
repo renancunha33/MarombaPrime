@@ -1,10 +1,10 @@
-package com.example.renan.mprime_2;
+package com.renan.muscleprime;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,13 +14,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.renan.mprime_2.Adapter.TreinoAdapter;
-import com.example.renan.mprime_2.DAO.TreinoDAO;
-import com.example.renan.mprime_2.Model.Treino;
+import com.renan.muscleprime.Adapter.TreinoAdapter;
+import com.renan.muscleprime.DAO.TreinoDAO;
+import com.renan.muscleprime.Model.Treino;
 
 import java.util.List;
 

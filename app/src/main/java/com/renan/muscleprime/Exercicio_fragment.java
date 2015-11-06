@@ -1,10 +1,10 @@
-package com.example.renan.mprime_2;
+package com.renan.muscleprime;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,12 +19,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.renan.mprime_2.Adapter.ExercicioAdapter;
-import com.example.renan.mprime_2.DAO.DatabaseHelper;
-import com.example.renan.mprime_2.DAO.ExercicioDAO;
-import com.example.renan.mprime_2.DAO.TreinoDAO;
-import com.example.renan.mprime_2.Model.Exercicio;
-import com.example.renan.mprime_2.Model.Treino;
+import com.renan.muscleprime.Adapter.ExercicioAdapter;
+import com.renan.muscleprime.DAO.DatabaseHelper;
+import com.renan.muscleprime.DAO.ExercicioDAO;
+import com.renan.muscleprime.DAO.TreinoDAO;
+import com.renan.muscleprime.Model.Exercicio;
+import com.renan.muscleprime.Model.Treino;
 
 import java.util.List;
 
@@ -66,9 +66,19 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AtualizarTreino();
+                try{
+                   AtualizarTreino();
+                }catch(Exception e){
+                    Toast.makeText(getContext(), "Cadastre um treino antes!! ", Toast.LENGTH_LONG).show();
+
+                }
                 if (idd == 0) {
+                    try{
                     cadastrar();
+                    }catch(Exception e){
+                        Toast.makeText(getContext(), "Cadastre um treino antes!! ", Toast.LENGTH_LONG).show();
+
+                    }
                     Log.v(null, "Cadastrar");
                     //  AtualizarTreino();
 
@@ -194,7 +204,7 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
         } else {
             validacao = true;
         }
-        if (exercicioCarga == null || exercicioCarga.equals("") || exercicioTempo == null || exercicioTempo.equals("") ||
+        if (edtID.getText().equals("ID") || exercicioCarga == null || exercicioCarga.equals("") || exercicioTempo == null || exercicioTempo.equals("") ||
                 exercicioRepet == null || exercicioRepet.equals("") || exercicioSerie == null || exercicioSerie.equals("") ||
                 exercicioNome == null || exercicioNome.equals("")) {
             validacao = false;

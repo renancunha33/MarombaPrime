@@ -1,14 +1,14 @@
-package com.example.renan.mprime_2;
+package com.renan.muscleprime;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Vibrator;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,17 +17,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.renan.mprime_2.DAO.DatabaseHelper;
-import com.example.renan.mprime_2.DAO.LogTreinoDAO;
-import com.example.renan.mprime_2.DAO.TreinoDAO;
-import com.example.renan.mprime_2.Model.LogTreino;
-import com.example.renan.mprime_2.Model.Treino;
+import com.renan.muscleprime.DAO.DatabaseHelper;
+import com.renan.muscleprime.DAO.LogTreinoDAO;
+import com.renan.muscleprime.DAO.TreinoDAO;
+import com.renan.muscleprime.Model.LogTreino;
+import com.renan.muscleprime.Model.Treino;
 
 import java.util.Calendar;
 import java.util.List;
@@ -180,16 +179,22 @@ public class Atividade_fragment extends Fragment implements AdapterView.OnItemSe
 
             @Override
             public void onClick(View v) {
-                cadastrar();
-                imgButton.setEnabled(true);
-                ch.setText("00:00");
-                txtReal.setText("--------------");
-                txtData.setText("--------------");
-                spinner.setEnabled(true);
-                btDescartar.setEnabled(false);
-                btSalvar.setEnabled(false);
-                imgButton.setBackgroundResource(R.drawable.play);
-                MainActivity.tempo = "00:00";
+
+                if(!txtNome.getText().equals("--------------")) {
+                    cadastrar();
+                    imgButton.setEnabled(true);
+                    ch.setText("00:00");
+                    txtReal.setText("--------------");
+                    txtData.setText("--------------");
+                    spinner.setEnabled(true);
+                    btDescartar.setEnabled(false);
+                    btSalvar.setEnabled(false);
+                    imgButton.setBackgroundResource(R.drawable.play);
+                    MainActivity.tempo = "00:00";
+                }else {
+                    Toast.makeText(getContext(), " Impossivel salvar treino sem nome!! ", Toast.LENGTH_LONG).show();
+
+                }
 
             }
         });

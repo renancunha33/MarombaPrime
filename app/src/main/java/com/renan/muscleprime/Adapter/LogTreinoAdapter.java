@@ -1,23 +1,18 @@
-package com.example.renan.mprime_2.Adapter;
+package com.renan.muscleprime.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.content.Intent.*;
 
-import com.example.renan.mprime_2.Atividade_fragment;
-import com.example.renan.mprime_2.LogTreino_fragment;
-import com.example.renan.mprime_2.MainActivity;
-import com.example.renan.mprime_2.Model.LogTreino;
-import com.example.renan.mprime_2.Model.Treino;
-import com.example.renan.mprime_2.R;
-import com.example.renan.mprime_2.DAO.TreinoDAO;
+import com.renan.muscleprime.R;
+import com.renan.muscleprime.DAO.TreinoDAO;
+import com.renan.muscleprime.Model.LogTreino;
+import com.renan.muscleprime.Model.Treino;
 
 import java.util.List;
 

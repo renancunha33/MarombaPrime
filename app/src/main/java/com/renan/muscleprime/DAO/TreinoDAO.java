@@ -1,4 +1,4 @@
-package com.example.renan.mprime_2.DAO;
+package com.renan.muscleprime.DAO;
 
 /**
  * Created by Renan on 21/09/2015.
@@ -9,10 +9,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
-import com.example.renan.mprime_2.Model.Treino;
+import com.renan.muscleprime.Model.Treino;
 
 import java.util.ArrayList;
 import java.util.List;

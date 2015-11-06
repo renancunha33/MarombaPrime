@@ -1,4 +1,4 @@
-package com.example.renan.mprime_2.DAO;
+package com.renan.muscleprime.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,12 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.renan.mprime_2.Model.Exercicio;
+import com.renan.muscleprime.Model.Exercicio;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.renan.mprime_2.DAO.DatabaseHelper.Exercicios.TABELA;
 
 /**
  * Created by Renan on 21/09/2015.
@@ -46,7 +44,7 @@ public class ExercicioDAO {
     }
 
     public List<Exercicio> listarExercicios() {
-        Cursor cursor = getDatabase().query(TABELA, DatabaseHelper.Exercicios.COLUNAS, null, null, null, null, null);
+        Cursor cursor = getDatabase().query(DatabaseHelper.Exercicios.TABELA, DatabaseHelper.Exercicios.COLUNAS, null, null, null, null, null);
         List<Exercicio> exercicios = new ArrayList<Exercicio>();
         while (cursor.moveToNext()) {
             Exercicio model = CriarExercicio(cursor);
@@ -66,14 +64,14 @@ public class ExercicioDAO {
         valores.put(DatabaseHelper.Exercicios.TREINO_ID_TREINO, exercicio.getTreino_ID_treino());
 
         if ((exercicio.get_id() != null)) {
-            return getDatabase().update(TABELA, valores, "_id = ?", new String[]{exercicio.get_id().toString()});
+            return getDatabase().update(DatabaseHelper.Exercicios.TABELA, valores, "_id = ?", new String[]{exercicio.get_id().toString()});
         } else {
-            return getDatabase().insert(TABELA, null, valores);
+            return getDatabase().insert(DatabaseHelper.Exercicios.TABELA, null, valores);
         }
     }
 
     public boolean removerExercicios(int id) {
-        return getDatabase().delete(TABELA, "_id = ?", new String[]{Integer.toString(id)}) > 0;
+        return getDatabase().delete(DatabaseHelper.Exercicios.TABELA, "_id = ?", new String[]{Integer.toString(id)}) > 0;
 
     }
 

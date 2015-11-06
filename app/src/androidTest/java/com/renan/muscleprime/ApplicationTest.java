@@ -1,4 +1,4 @@
-package com.example.renan.mprime_2;
+package com.renan.muscleprime;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
