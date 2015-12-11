@@ -66,16 +66,16 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
-                   AtualizarTreino();
-                }catch(Exception e){
+                try {
+                    AtualizarTreino();
+                } catch (Exception e) {
                     Toast.makeText(getContext(), "Cadastre um treino antes!! ", Toast.LENGTH_LONG).show();
 
                 }
                 if (idd == 0) {
-                    try{
-                    cadastrar();
-                    }catch(Exception e){
+                    try {
+                        cadastrar();
+                    } catch (Exception e) {
                         Toast.makeText(getContext(), "Cadastre um treino antes!! ", Toast.LENGTH_LONG).show();
 
                     }
@@ -116,6 +116,7 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
                         switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
                                 try {
+
                                     if (String.valueOf(edtID.getText()).equals("ID")) {
                                         Toast.makeText(getContext(), "CRIE UM TREINO!", Toast.LENGTH_SHORT).show();
                                     } else {
@@ -132,6 +133,7 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
+                                spinner.setEnabled(false);
                                 //No button clickedvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
                                 txtNomeExec = (EditText) MyView.findViewById(R.id.edtExercicio);
                                 txtSerieExec = (EditText) MyView.findViewById(R.id.edtSeries);
@@ -360,6 +362,7 @@ public class Exercicio_fragment extends Fragment implements AdapterView.OnItemSe
                 Toast.makeText(this.getContext(), "ERRO ao Atualizar treino!", Toast.LENGTH_SHORT).show();
             }
         }
+        spinner.setEnabled(true);
     }
 
     public void excluir(int menos) {

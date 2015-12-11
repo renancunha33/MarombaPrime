@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Muscle Prime</string>
-
+    <string name="app_name">Maromba Prime</string>
+    <!--string name="app_name">Maromba Prime</string-->
+    <!--Maromba prime é o nome a ser apresentado no TCC-->
     <string name="title_Treinos">Treinos</string>
     <string name="title_NovoTreino">Novo Treino</string>
     <string name="title_AdicionaExercicios">Exercícios</string>
